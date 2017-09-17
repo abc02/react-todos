@@ -32,7 +32,7 @@ class App extends Component {
       <div className="App">
         <h1>待办事项</h1>
         <div className="inputWrapper">
-          <TodoInput />
+          <TodoInput content={this.state.newTodo} />
         </div>
         <ol>
           {todos}
