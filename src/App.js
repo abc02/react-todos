@@ -8,6 +8,7 @@ import './App.css';
 let id = 0
 function idMaker() {
   id += 1
+  console.log(id)
   return id
 }
 
@@ -21,12 +22,13 @@ class App extends Component {
     this.changeTitle = this.changeTitle.bind(this)
     this.addTodo = this.addTodo.bind(this)
     this.toggle = this.toggle.bind(this)
+    this.delete = this.delete.bind(this)
   }
-  changeTitle(e){
+  changeTitle(e) {
     // 接收TodoInput 传入的event参数，setState
     console.log('changTitle')
     this.setState({
-      newTodo:e.target.value,
+      newTodo: e.target.value,
       todoLists: this.state.todoLists
     })
   }
@@ -42,16 +44,22 @@ class App extends Component {
       todoLists: this.state.todoLists
     })
   }
-  toggle(e, todo){
-    todo.status = todo.status  === 'completed' ? '' : 'completed'
+  toggle(e, todo) {
+    todo.status = todo.status === 'completed' ? '' : 'completed'
     this.setState(this.state)
+  }
+  delete(e, todo) {
+    todo.deleted = true
+    this.setState(this.state)
+    console.log(this.state)
   }
   render() {
     let todos = this.state.todoLists.map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} 
-          onToggle={this.toggle}
+          <TodoItem todo={item}
+            onToggle={this.toggle}
+            onDelete={this.delete}
           />
         </li>
       )
@@ -61,10 +69,10 @@ class App extends Component {
       <div className="App">
         <h1>待办事项</h1>
         <div className="inputWrapper">
-          <TodoInput content={this.state.newTodo} 
-          //注册onChange属性，赋值changeTitle方法，
-          onChange={this.changeTitle}
-          onSubmit={this.addTodo} />
+          <TodoInput content={this.state.newTodo}
+            //注册onChange属性，赋值changeTitle方法，
+            onChange={this.changeTitle}
+            onSubmit={this.addTodo} />
         </div>
         <ol>
           {todos}
