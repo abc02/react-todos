@@ -1,3 +1,13 @@
 .completed{
     text-decoration: line-through;
 }
+
+.TodoItem{
+    padding:.5em;
+    display: flex;
+    align-content: center;
+}
+.TodoItem > .title{
+    flex: 1;
+    padding: 0 .5em;
+}

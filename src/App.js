@@ -76,7 +76,7 @@ class App extends Component {
             onChange={this.changeTitle}
             onSubmit={this.addTodo} />
         </div>
-        <ol>
+        <ol className="todoList">
           {todos}
         </ol>
       </div>
