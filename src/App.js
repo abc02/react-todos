@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoInput from './TodoInput.js'
 import TodoItem from './TodoItem.js'
+import 'normalize.css'
 import './App.css';
 
 
@@ -27,7 +28,7 @@ class App extends Component {
     })
 
     return (
-      <div className="App">
+      <div className="app">
         <h1>待办事项</h1>
         <div className="inputWrapper">
           <TodoInput />
