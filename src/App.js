@@ -29,7 +29,7 @@ class App extends Component {
     })
 
     return (
-      <div className="app">
+      <div className="App">
         <h1>待办事项</h1>
         <div className="inputWrapper">
           <TodoInput />
