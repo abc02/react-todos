@@ -18,7 +18,15 @@ class App extends Component {
       newTodo: '',
       todoLists: []
     }
+    this.changeTitle = this.changeTitle.bind(this)
     this.addTodo = this.addTodo.bind(this)
+  }
+  changeTitle(e){
+    console.log('changTitle')
+    this.setState({
+      newTodo:e.target.value,
+      todoLists: this.state.todoLists
+    })
   }
   addTodo(e) {
     this.state.todoLists.push({
@@ -45,7 +53,9 @@ class App extends Component {
       <div className="App">
         <h1>待办事项</h1>
         <div className="inputWrapper">
-          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo} />
+          <TodoInput content={this.state.newTodo} 
+          onChange={this.changeTitle}
+          onSubmit={this.addTodo} />
         </div>
         <ol>
           {todos}
