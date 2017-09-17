@@ -12,13 +12,15 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      newTodo: 'test',
+      newTodo: '',
       todoLists: [
         { id: 1, title: '第一个todos' }
       ]
     }
   }
-
+  addTodo(){
+    console.log('addTodo')
+  }
   render() {
     let todos = this.state.todoLists.map((item, index) => {
       return (
@@ -32,7 +34,7 @@ class App extends Component {
       <div className="App">
         <h1>待办事项</h1>
         <div className="inputWrapper">
-          <TodoInput content={this.state.newTodo} />
+          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
         </div>
         <ol>
           {todos}
