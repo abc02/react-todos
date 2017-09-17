@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './TodoInput.css'
 
 class TodoInput extends Component {
     constructor() {
@@ -20,6 +21,7 @@ class TodoInput extends Component {
     render() {
         return (
             <input type="text" value={this.props.content}
+                className="TodoInput"
             // 触发change事件，调用changeTitle方法
                 onChange={this.changeTitle}
                 onKeyPress={this.submit}
