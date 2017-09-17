@@ -22,6 +22,7 @@ class App extends Component {
     this.addTodo = this.addTodo.bind(this)
   }
   changeTitle(e){
+    // 接收TodoInput 传入的event参数，setState
     console.log('changTitle')
     this.setState({
       newTodo:e.target.value,
@@ -54,6 +55,7 @@ class App extends Component {
         <h1>待办事项</h1>
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo} 
+          //注册onChange属性，赋值changeTitle方法，
           onChange={this.changeTitle}
           onSubmit={this.addTodo} />
         </div>

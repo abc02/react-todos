@@ -8,6 +8,7 @@ class TodoInput extends Component {
         this.submit = this.submit.bind(this)
     }
     changeTitle(e){
+        // react 自动传入event参数，调用props属性上注册号的onChange方法，传入event参数
         this.props.onChange(e)
     }
     submit(e) {
@@ -19,6 +20,7 @@ class TodoInput extends Component {
     render() {
         return (
             <input type="text" value={this.props.content}
+            // 触发change事件，调用changeTitle方法
                 onChange={this.changeTitle}
                 onKeyPress={this.submit}
             />
