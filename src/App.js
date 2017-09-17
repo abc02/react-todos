@@ -20,6 +20,7 @@ class App extends Component {
     }
     this.changeTitle = this.changeTitle.bind(this)
     this.addTodo = this.addTodo.bind(this)
+    this.toggle = this.toggle.bind(this)
   }
   changeTitle(e){
     // 接收TodoInput 传入的event参数，setState
@@ -41,11 +42,17 @@ class App extends Component {
       todoLists: this.state.todoLists
     })
   }
+  toggle(e, todo){
+    todo.status = todo.status  === 'completed' ? '' : 'completed'
+    this.setState(this.state)
+  }
   render() {
     let todos = this.state.todoLists.map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} />
+          <TodoItem todo={item} 
+          onToggle={this.toggle}
+          />
         </li>
       )
     })
