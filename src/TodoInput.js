@@ -9,7 +9,7 @@ class TodoInput extends Component {
     submit(e) {
         if (e.key === 'Enter') {
             console.log(e.key)
-            this.props.onSubmit.call()
+            this.props.onSubmit(e)
         }
     }
     render() {

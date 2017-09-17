@@ -5,21 +5,32 @@ import 'normalize.css'
 import './reset.css'
 import './App.css';
 
-
-
+let id = 0
+function idMaker() {
+  id += 1
+  return id
+}
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       newTodo: '',
-      todoLists: [
-        { id: 1, title: '第一个todos' }
-      ]
+      todoLists: []
     }
+    this.addTodo = this.addTodo.bind(this)
   }
-  addTodo(){
-    console.log('addTodo')
+  addTodo(e) {
+    this.state.todoLists.push({
+      id: idMaker(),
+      title: e.target.value,
+      status: null,
+      deleted: false
+    })
+    this.setState({
+      newTodo: '',
+      todoLists: this.state.todoLists
+    })
   }
   render() {
     let todos = this.state.todoLists.map((item, index) => {
@@ -34,7 +45,7 @@ class App extends Component {
       <div className="App">
         <h1>待办事项</h1>
         <div className="inputWrapper">
-          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
+          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo} />
         </div>
         <ol>
           {todos}
