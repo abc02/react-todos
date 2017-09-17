@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoInput from './TodoInput.js'
+import TodoItem from './TodoItem.js'
 import './App.css';
 
 
@@ -18,7 +19,11 @@ class App extends Component {
 
   render() {
     let todos = this.state.todoLists.map((item, index) => {
-      return <li>{item.title}</li>
+      return (
+        <li>
+          <TodoItem todo={item} />
+        </li>
+      )
     })
 
     return (
