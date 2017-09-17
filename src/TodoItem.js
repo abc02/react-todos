@@ -5,3 +5,4 @@ class TodoItem extends Component {
         return <div>{this.props.todo.title}</div>
     }
 }
+export default TodoItem
