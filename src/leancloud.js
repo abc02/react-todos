@@ -24,7 +24,14 @@ export function signUp(usernmae, password, successFn, errorFn) {
   })
   return undefined
 }
-
+export function getCurrentUser(){
+  let user = AV.User.current()
+  if(user){
+    return getUserFromAVUser(user)
+  }else{
+    return {}
+  }
+}
 function getUserFromAVUser(AVUser){
   console.log(AVUser)
   return {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoInput from './TodoInput.js'
 import TodoItem from './TodoItem.js'
 import UserDialog from './UserDialog.js'
+import { getCurrentUser } from './leancloud.js'
 import 'normalize.css'
 import './reset.css'
 import './App.css';
@@ -18,9 +19,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user:{},
+      user: getCurrentUser() || {},
       newTodo: '',
-      todoLists:  [] 
+      todoLists: []
     }
     this.changeTitle = this.changeTitle.bind(this)
     this.addTodo = this.addTodo.bind(this)
@@ -55,29 +56,30 @@ class App extends Component {
     this.setState(this.state)
     console.log(this.state)
   }
-  onSignUp(user){
+  onSignUp(user) {
     console.log('onSignUp', user)
     let stateCopy = JSON.parse(JSON.stringify(this.state))
-    stateCopy.user =user
+    stateCopy.user = user
     this.setState(stateCopy)
   }
+
   render() {
     let todos = this.state.todoLists
-    .filter(item => !item.deleted)
-    .map((item, index) => {
-      return (
-        <li key={index}>
-          <TodoItem todo={item}
-            onToggle={this.toggle}
-            onDelete={this.delete}
-          />
-        </li>
-      )
-    })
+      .filter(item => !item.deleted)
+      .map((item, index) => {
+        return (
+          <li key={index}>
+            <TodoItem todo={item}
+              onToggle={this.toggle}
+              onDelete={this.delete}
+            />
+          </li>
+        )
+      })
 
     return (
       <div className="App">
-        <h1>{this.state.user.username || '我' }的待办事项</h1>
+        <h1>{this.state.user.username || '我'}的待办事项</h1>
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo}
             //注册onChange属性，赋值changeTitle方法，
@@ -87,8 +89,8 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
-        {this.state.user.id  ? null :  <UserDialog onSignUp={(user) => this.onSignUp(user)}/>}
-       
+        {this.state.user.id ? null : <UserDialog onSignUp={(user) => this.onSignUp(user)} />}
+
       </div>
     );
   }
