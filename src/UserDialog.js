@@ -1,4 +1,4 @@
-import Ract , { Component} from 'react'
+import React , { Component} from 'react'
 import './UserDialog.css'
 
 export default class UserDialog extends Component{
@@ -10,8 +10,7 @@ export default class UserDialog extends Component{
                         <input type="radio"/> 注册
                         <input type="radio"/> 登录
                     </nav>
-                </div>
-                <div className="panes">
+                    <div className="panes">
                     <form className="sigUp">
                         <div className="row">
                             <label>用户名</label>
@@ -39,6 +38,8 @@ export default class UserDialog extends Component{
                         </div>
                     </form>
                 </div>
+                </div>
+               
             </div>
         )
     }

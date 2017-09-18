@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoInput from './TodoInput.js'
 import TodoItem from './TodoItem.js'
+import UserDialog from './UserDialog.js'
 import 'normalize.css'
 import './reset.css'
 import './App.css';
@@ -79,6 +80,7 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
+        <UserDialog />
       </div>
     );
   }
