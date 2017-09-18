@@ -18,7 +18,7 @@ class App extends Component {
     super(props)
     this.state = {
       newTodo: '',
-      todoLists: localStore.load('todoLists') || []
+      todoLists: localStore.load('todoLists') || [] //window.localStorage.getItem('todoLists') 如果有获取数据，没有则空数组
     }
     this.changeTitle = this.changeTitle.bind(this)
     this.addTodo = this.addTodo.bind(this)
@@ -32,6 +32,7 @@ class App extends Component {
       newTodo: e.target.value,
       todoLists: this.state.todoLists
     })
+    // 输入数据后，保存至localStorage.setItem() 
     localStore.save('todoLists', this.state.todoLists)
   }
   addTodo(e) {
@@ -45,11 +46,13 @@ class App extends Component {
       newTodo: '',
       todoLists: this.state.todoLists
     })
+     // 添加item，保存至localStorage.setItem() 
     localStore.save('todoLists', this.state.todoLists)
   }
   toggle(e, todo) {
     todo.status = todo.status === 'completed' ? '' : 'completed'
     this.setState(this.state)
+    // 添加item，保存至localStorage.setItem() 
     localStore.save('todoLists', this.state.todoLists)
   }
   delete(e, todo) {
