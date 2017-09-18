@@ -8,3 +8,27 @@ AV.init({
 })
 
 export default AV
+
+
+export function signUp(usernmae, password, successFn, errorFn) {
+  // 新建 AVUser 对象实例
+  var user = new AV.User()
+  user.setUsername(usernmae)
+  user.setPassword(password)
+
+  user.signUp().then(function (loginedUser) {
+    let user = getUserFromAVUser(loginedUser)
+    successFn.call(null, user)
+  }, function (error) {
+    errorFn.call(null, error)
+  })
+  return undefined
+}
+
+function getUserFromAVUser(AVUser){
+  console.log(AVUser)
+  return {
+    id: AVUser.id,
+    ...AVUser.attributes
+  }
+}
