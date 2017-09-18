@@ -87,7 +87,8 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
-        <UserDialog onSignUp={(user) => this.onSignUp(user)}/>
+        {this.state.user.id  ? null :  <UserDialog onSignUp={(user) => this.onSignUp(user)}/>}
+       
       </div>
     );
   }
