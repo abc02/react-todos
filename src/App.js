@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TodoInput from './TodoInput.js'
 import TodoItem from './TodoItem.js'
 import UserDialog from './UserDialog.js'
-import { getCurrentUser , signOut} from './leancloud.js'
+import { getCurrentUser , signOut, saveData} from './leancloud.js'
 import 'normalize.css'
 import './reset.css'
 import './App.css';
@@ -46,6 +46,8 @@ class App extends Component {
       newTodo: '',
       todoLists: this.state.todoLists
     })
+    let stateString = JSON.stringify(this.state)
+    saveData(stateString)
   }
   toggle(e, todo) {
     todo.status = todo.status === 'completed' ? '' : 'completed'
@@ -68,6 +70,9 @@ class App extends Component {
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
     this.setState(stateCopy)
+  }
+  componentDidUpdate(){
+    console.log('componentDidUpdate',this.state)
   }
   render() {
     let todos = this.state.todoLists

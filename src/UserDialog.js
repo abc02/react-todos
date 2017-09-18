@@ -18,6 +18,9 @@ export default class UserDialog extends Component {
     }
     showError(error) {
         switch (error.code) {
+            case 202:
+                alert('用户名已被占用')
+                break
             case 210:
                 alert('用户名或密码错误')
                 break
@@ -40,7 +43,7 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-           this.showError(error)
+            this.showError(error)
         }
         signUp(username, password, success, error)
     }
