@@ -16,7 +16,16 @@ export default class UserDialog extends Component {
         this.signUp = this.signUp.bind(this)
         this.signIn = this.signIn.bind(this)
     }
-
+    showError(error) {
+        switch (error.code) {
+            case 210:
+                alert('用户名或密码错误')
+                break
+            default:
+                alert(error)
+                break
+        }
+    }
     switch(e) {
         this.setState({
             selected: e.target.value
@@ -31,7 +40,7 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-            console.log(error)
+           this.showError(error)
         }
         signUp(username, password, success, error)
     }
@@ -39,14 +48,14 @@ export default class UserDialog extends Component {
         e.preventDefault()
         let { username, password } = this.state.formData
         let success = (user) => {
-            this.props.onSignIn.call(null,user)
+            this.props.onSignIn.call(null, user)
             console.log(user)
         }
         let error = (error) => {
-            console.log(error)
+            this.showError(error)
         }
         signIn(username, password, success, error)
-     }
+    }
     changeFormData(key, e) {
         console.log('changeFormData', key, e)
         let stateCopy = JSON.parse(JSON.stringify(this.state))
