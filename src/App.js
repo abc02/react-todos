@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoInput from './TodoInput.js'
 import TodoItem from './TodoItem.js'
+import  * as localStore from './loclaStore.js'
 import 'normalize.css'
 import './reset.css'
 import './App.css';
@@ -17,7 +18,7 @@ class App extends Component {
     super(props)
     this.state = {
       newTodo: '',
-      todoLists: []
+      todoLists: localStore.load('todoLists') || []
     }
     this.changeTitle = this.changeTitle.bind(this)
     this.addTodo = this.addTodo.bind(this)
@@ -31,6 +32,7 @@ class App extends Component {
       newTodo: e.target.value,
       todoLists: this.state.todoLists
     })
+    localStore.save('todoLists', this.state.todoLists)
   }
   addTodo(e) {
     this.state.todoLists.push({
@@ -43,15 +45,18 @@ class App extends Component {
       newTodo: '',
       todoLists: this.state.todoLists
     })
+    localStore.save('todoLists', this.state.todoLists)
   }
   toggle(e, todo) {
     todo.status = todo.status === 'completed' ? '' : 'completed'
     this.setState(this.state)
+    localStore.save('todoLists', this.state.todoLists)
   }
   delete(e, todo) {
     todo.deleted = true
     this.setState(this.state)
     console.log(this.state)
+    localStore.save('todoLists', this.state.todoLists)
   }
   render() {
     let todos = this.state.todoLists
