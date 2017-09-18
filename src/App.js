@@ -6,6 +6,7 @@ import 'normalize.css'
 import './reset.css'
 import './App.css';
 
+
 let id = 0
 function idMaker() {
   id += 1
