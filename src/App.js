@@ -56,14 +56,8 @@ class App extends Component {
     this.setState(this.state)
     console.log(this.state)
   }
-  onSignUp(user) {
+  onSignUpOrSignIn(user) {
     console.log('onSignUp', user)
-    let stateCopy = JSON.parse(JSON.stringify(this.state))
-    stateCopy.user = user
-    this.setState(stateCopy)
-  }
-  onSignIn(user) {
-    console.log('onSignIn', user)
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = user
     this.setState(stateCopy)
@@ -104,8 +98,8 @@ class App extends Component {
           {todos}
         </ol>
         {this.state.user.id ? null : <UserDialog 
-        onSignUp={(user) => this.onSignUp(user)} 
-        onSignIn={(user) => this.onSignIn(user)}
+        onSignUp={(user) => this.onSignUpOrSignIn(user)} 
+        onSignIn={(user) => this.onSignUpOrSignIn(user)}
         />}
 
       </div>
