@@ -24,20 +24,30 @@ export function signUp(usernmae, password, successFn, errorFn) {
   })
   return undefined
 }
-export function getCurrentUser(){
+export function signIn(username, password, successFn, errorFn) {
+
+  AV.User.logIn(username, password).then(function (loginedUser) {
+    let user = getUserFromAVUser(loginedUser)
+    successFn.call(null, user)
+  }, function (error) {
+    errorFn.call(null, error)
+  })
+  return undefined
+}
+export function getCurrentUser() {
   let user = AV.User.current()
-  if(user){
+  if (user) {
     return getUserFromAVUser(user)
-  }else{
+  } else {
     return {}
   }
 }
-export function signOut(){
+export function signOut() {
   console.log('signOut')
   AV.User.logOut()
   return undefined
 }
-function getUserFromAVUser(AVUser){
+function getUserFromAVUser(AVUser) {
   console.log(AVUser)
   return {
     id: AVUser.id,

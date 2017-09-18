@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './UserDialog.css'
-import { signUp } from './leancloud.js'
+import { signUp, signIn } from './leancloud.js'
 
 export default class UserDialog extends Component {
     constructor(props) {
@@ -35,7 +35,18 @@ export default class UserDialog extends Component {
         }
         signUp(username, password, success, error)
     }
-    signIn(e) { }
+    signIn(e) {
+        e.preventDefault()
+        let { username, password } = this.state.formData
+        let success = (user) => {
+            this.props.onSignIn.call(null,user)
+            console.log(user)
+        }
+        let error = (error) => {
+            console.log(error)
+        }
+        signIn(username, password, success, error)
+     }
     changeFormData(key, e) {
         console.log('changeFormData', key, e)
         let stateCopy = JSON.parse(JSON.stringify(this.state))
@@ -84,18 +95,18 @@ export default class UserDialog extends Component {
                 <div className="UserDialog">
                     <nav>
                         <label>
-                            <input type="radio" 
-                                value="signUp" 
+                            <input type="radio"
+                                value="signUp"
                                 checked={this.state.selected === 'signUp'}
                                 onChange={this.switch}
                             /> 注册
                         </label>
                         <label>
-                            <input type="radio" 
-                            value="signIn" 
-                            checked={this.state.selected === 'signIn'}
-                            onChange={this.switch}
-                            /> 登录 
+                            <input type="radio"
+                                value="signIn"
+                                checked={this.state.selected === 'signIn'}
+                                onChange={this.switch}
+                            /> 登录
                         </label>
                     </nav>
                     <div className="panes">
