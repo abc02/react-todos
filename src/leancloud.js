@@ -25,11 +25,12 @@ export function saveData(data) {
   });
 }
 
-export function signUp(usernmae, password, successFn, errorFn) {
+export function signUp(email, usernmae, password, successFn, errorFn) {
   // 新建 AVUser 对象实例
   var user = new AV.User()
   user.setUsername(usernmae)
   user.setPassword(password)
+  user.setEmail(email)
 
   user.signUp().then(function (loginedUser) {
     let user = getUserFromAVUser(loginedUser)
