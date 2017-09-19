@@ -7,8 +7,9 @@ export default class UserDialog extends Component {
         super(props)
         this.state = {
             selected: 'signUp',
+            selectedTab:'signInOrSignUp',
             formData: {
-                email:'',
+                email: '',
                 username: '',
                 password: ''
             }
@@ -16,6 +17,8 @@ export default class UserDialog extends Component {
         this.switch = this.switch.bind(this)
         this.signUp = this.signUp.bind(this)
         this.signIn = this.signIn.bind(this)
+        this.forgotPassword = this.forgotPassword.bind(this)
+        this.resetPassword = this.resetPassword.bind(this)
     }
     showError(error) {
         switch (error.code) {
@@ -37,7 +40,7 @@ export default class UserDialog extends Component {
     }
     signUp(e) {
         e.preventDefault()
-        let { email,username, password } = this.state.formData
+        let { email, username, password } = this.state.formData
         let success = (user) => {
             console.log(this.props)
             this.props.onSignUp.call(null, user)
@@ -46,7 +49,7 @@ export default class UserDialog extends Component {
         let error = (error) => {
             this.showError(error)
         }
-        signUp(email,username, password, success, error)
+        signUp(email, username, password, success, error)
     }
     signIn(e) {
         e.preventDefault()
@@ -65,6 +68,14 @@ export default class UserDialog extends Component {
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.formData[key] = e.target.value
         this.setState(stateCopy)
+    }
+    forgotPassword(){
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.selectedTab = 'forgotPassword'
+        this.setState(stateCopy)
+    }
+    resetPassword(){
+        
     }
     render() {
         let signUpForm = (
@@ -105,33 +116,51 @@ export default class UserDialog extends Component {
                 </div>
                 <div className="row actions">
                     <button type="submit">登录</button>
-                    <a href="javascript:;">忘记密码？</a>
+                    <a href="#" onClick={this.forgotPassword}>忘记密码？</a>
                 </div>
             </form>
+        )
+        let signInOrSignUp = (
+            <div className="signInOrSignUp">
+                <nav>
+                    <label>
+                        <input type="radio"
+                            value="signUp"
+                            checked={this.state.selected === 'signUp'}
+                            onChange={this.switch}
+                        /> 注册
+            </label>
+                    <label>
+                        <input type="radio"
+                            value="signIn"
+                            checked={this.state.selected === 'signIn'}
+                            onChange={this.switch}
+                        /> 登录
+            </label>
+                </nav>
+                <div className="panes">
+                    {this.state.selected === 'signUp' ? signUpForm : null}
+                    {this.state.selected === 'signIn' ? signInForm : null}
+                </div>
+            </div>
+        )
+        let forgotPassword = (
+            <div className="forgetPassword">
+                <h3>重置密码</h3>
+                <form className="forgorPassword" onSubmit={this.restPassword} onSubmit={this.resetPassword}>
+                    <label>邮箱</label>
+                    <input type="email" value={this.state.formData.email} 
+                        onChange={(e) => this.changeFormData('email', e)}/>
+                    <div className="row actions">
+                        <button type="submit">发送重置邮件</button>
+                    </div>
+                </form>
+            </div>
         )
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
-                    <nav>
-                        <label>
-                            <input type="radio"
-                                value="signUp"
-                                checked={this.state.selected === 'signUp'}
-                                onChange={this.switch}
-                            /> 注册
-                        </label>
-                        <label>
-                            <input type="radio"
-                                value="signIn"
-                                checked={this.state.selected === 'signIn'}
-                                onChange={this.switch}
-                            /> 登录
-                        </label>
-                    </nav>
-                    <div className="panes">
-                        {this.state.selected === 'signUp' ? signUpForm : null}
-                        {this.state.selected === 'signIn' ? signInForm : null}
-                    </div>
+                    {this.state.selectedTab === 'signInOrSignUp' ? signInOrSignUp : forgotPassword }
                 </div>
 
             </div>

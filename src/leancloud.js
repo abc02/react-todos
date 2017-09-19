@@ -28,8 +28,11 @@ export function saveData(data) {
 export function signUp(email, usernmae, password, successFn, errorFn) {
   // 新建 AVUser 对象实例
   var user = new AV.User()
+  //设置用户名
   user.setUsername(usernmae)
+  // 设置密码
   user.setPassword(password)
+  // 设置邮箱
   user.setEmail(email)
 
   user.signUp().then(function (loginedUser) {
