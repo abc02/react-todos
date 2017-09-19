@@ -9,23 +9,30 @@ AV.init({
 
 export default AV
 
+export const TodoModel = {
+  create({ status, title, deleted }, successFn, errorFn) {
+    // 声明类型
+    let Todo = AV.Object.extend('Todo')
+    // 新建对象
+    let todo = new Todo()
+    // 设置名称
+    todo.set('title', title)
+    todo.set('status', status)
+    todo.set('deleted', deleted)
+    todo.save().then(function (response) {
+      successFn.call(null, response.id)
+    }, function (error) {
+      errorFn & errorFn.call(null, error)
+    });
+  },
+  update() {
 
+  },
+  destroy() {
 
-export function saveData(data) {
-  // 声明类型
-  var TodoFolder = AV.Object.extend('TodoFolder');
-  // 新建对象
-  var todoFolder = new TodoFolder();
-  // 设置名称
-  todoFolder.set({ data });
-  // 设置优先级
-  todoFolder.set('priority', 1);
-  todoFolder.save().then(function (todo) {
-    console.log('objectId is ' + todo.id);
-  }, function (error) {
-    console.error(error);
-  });
+  }
 }
+
 
 export function signUp(email, usernmae, password, successFn, errorFn) {
   // 新建 AVUser 对象实例
@@ -68,7 +75,7 @@ export function signOut() {
   AV.User.logOut()
   return undefined
 }
-export function resetPasswordEmail(email,successFn, errorFn) {
+export function resetPasswordEmail(email, successFn, errorFn) {
   AV.User.requestPasswordReset(email).then(function (success) {
     console.log(success)
   }, function (error) {

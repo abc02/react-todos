@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TodoInput from './Todo/TodoInput.js'
 import TodoItem from './Todo/TodoItem.js'
 import UserDialog from './UserDialog/UserDialog.js'
-import { getCurrentUser , signOut, saveData} from '../ServiceAPI/LeanCloud.js'
+import { getCurrentUser, signOut, TodoModel } from '../ServiceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../reset.css'
 import './App.css';
@@ -23,10 +23,7 @@ class App extends Component {
       newTodo: '',
       todoLists: []
     }
-    this.changeTitle = this.changeTitle.bind(this)
-    this.addTodo = this.addTodo.bind(this)
-    this.toggle = this.toggle.bind(this)
-    this.delete = this.delete.bind(this)
+
   }
   changeTitle(e) {
     console.log('changTitle')
@@ -36,18 +33,23 @@ class App extends Component {
     })
   }
   addTodo(e) {
-    this.state.todoLists.push({
-      id: idMaker(),
+    //新建todo信息对象
+    let newTodo = {
       title: e.target.value,
       status: null,
       deleted: false
+    }
+    //调用 createapi ，newTodo ,successFn , errorFn => setState
+    TodoModel.create(newTodo, (id) => {
+      newTodo.id = id
+      this.state.todoLists.push(newTodo)
+      this.setState({
+        newTodo: '',
+        todoLists: this.state.todoLists
+      })
+    }, (error) =>{
+      console.dir(error)
     })
-    this.setState({
-      newTodo: '',
-      todoLists: this.state.todoLists
-    })
-    let stateString = JSON.stringify(this.state)
-    saveData(stateString)
   }
   toggle(e, todo) {
     todo.status = todo.status === 'completed' ? '' : 'completed'
@@ -64,15 +66,15 @@ class App extends Component {
     stateCopy.user = user
     this.setState(stateCopy)
   }
-  signOut(){
+  signOut() {
     signOut()
-    console.log('singOut',this)
+    console.log('singOut', this)
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
     this.setState(stateCopy)
   }
-  componentDidUpdate(){
-    console.log('componentDidUpdate',this.state)
+  componentDidUpdate() {
+    console.log('componentDidUpdate', this.state)
   }
   render() {
     let todos = this.state.todoLists
@@ -81,8 +83,8 @@ class App extends Component {
         return (
           <li key={index}>
             <TodoItem todo={item}
-              onToggle={this.toggle}
-              onDelete={this.delete}
+              onToggle={this.toggle.bind(this)}
+              onDelete={this.delete.bind(this)}
             />
           </li>
         )
@@ -96,16 +98,16 @@ class App extends Component {
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo}
             //注册onChange属性，赋值changeTitle方法，
-            onChange={this.changeTitle}
-            onSubmit={this.addTodo} />
+            onChange={this.changeTitle.bind(this)}
+            onSubmit={this.addTodo.bind(this)} />
         </div>
         <ol className="todoList">
           {todos}
         </ol>
         {this.state.user.id ? null :
-         <UserDialog 
-        onSignUp={(user) => this.onSignUpOrSignIn(user)} 
-        onSignIn={(user) => this.onSignUpOrSignIn(user)}/>}
+          <UserDialog
+            onSignUp={this.onSignUpOrSignIn.bind(this)}
+            onSignIn={this.onSignUpOrSignIn.bind(this)} />}
       </div>
     );
   }
