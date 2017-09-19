@@ -9,13 +9,15 @@ AV.init({
 
 export default AV
 
+
+
 export function saveData(data) {
   // 声明类型
   var TodoFolder = AV.Object.extend('TodoFolder');
   // 新建对象
   var todoFolder = new TodoFolder();
   // 设置名称
-  todoFolder.set({data});
+  todoFolder.set({ data });
   // 设置优先级
   todoFolder.set('priority', 1);
   todoFolder.save().then(function (todo) {
@@ -65,6 +67,12 @@ export function signOut() {
   console.log('signOut')
   AV.User.logOut()
   return undefined
+}
+export function resetPasswordEmail(email,successFn, errorFn) {
+  AV.User.requestPasswordReset(email).then(function (success) {
+    console.log(success)
+  }, function (error) {
+  });
 }
 function getUserFromAVUser(AVUser) {
   console.log(AVUser)
