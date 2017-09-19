@@ -67,16 +67,20 @@ class App extends Component {
     })
   }
   onSignUpOrSignIn(user) {
-    console.log('onSignUp', user)
-    let stateCopy = JSON.parse(JSON.stringify(this.state))
-    stateCopy.user = user
-    this.setState(stateCopy)
+    console.log('onSignUpOrSignIn', user)
+    TodoModel.getByUser(user, (todos) => {
+      let stateCopy = JSON.parse(JSON.stringify(this.state))
+      stateCopy.user = user
+      stateCopy.todoLists = todos
+      this.setState(stateCopy)
+    })
   }
   signOut() {
     signOut()
     console.log('singOut')
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
+    stateCopy.todoLists = []
     this.setState(stateCopy)
   }
   componentDidUpdate() {

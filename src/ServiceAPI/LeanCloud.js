@@ -25,6 +25,7 @@ export const TodoModel = {
     let acl = new AV.ACL()
     acl.setPublicReadAccess(false)
     acl.setWriteAccess(AV.User.current(), true)
+    acl.setReadAccess(AV.User.current(), true)
 
     // 将 ACL 实例赋予 Post 对象
     todo.setACL(acl)
@@ -51,16 +52,13 @@ export const TodoModel = {
   },
   destroy(todoId, successFn, errorFn) {
     let todo = AV.Object.createWithoutData('Todo', todoId)
-    todo.destroy().then(response => {
-      successFn && successFn.call(null)
-    }, error => {
-      errorFn && errorFn.call(null, error)
-    })
+    this.update({ id: todoId, deleted: true }, successFn, errorFn)
   },
   getByUser(user, successFn, errorFn) {
     let query = new AV.Query('Todo')
+    //初始化 应该可见 'deleted: false'
+    query.equalTo('deleted', false)
     query.find().then(response => {
-      console.log(response)
       let array = response.map(item => {
         return { id: item.id, ...item.attributes }
       })
