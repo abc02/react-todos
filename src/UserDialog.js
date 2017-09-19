@@ -19,6 +19,7 @@ export default class UserDialog extends Component {
         this.signIn = this.signIn.bind(this)
         this.forgotPassword = this.forgotPassword.bind(this)
         this.resetPasswordEmail = this.resetPasswordEmail.bind(this)
+        this.returnToSignIn = this.returnToSignIn.bind(this)
     }
     showError(error) {
         switch (error.code) {
@@ -77,6 +78,11 @@ export default class UserDialog extends Component {
     resetPasswordEmail(e){
         e.preventDefault()
         resetPasswordEmail(this.state.formData.email)
+    }
+    returnToSignIn(){
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.selectedTab = 'signInOrSignUp'
+        this.setState(stateCopy)
     }
     render() {
         let signUpForm = (
@@ -154,6 +160,7 @@ export default class UserDialog extends Component {
                         onChange={(e) => this.changeFormData('email', e)}/>
                     <div className="row actions">
                         <button type="submit">发送重置邮件</button>
+                        <a href="#" onClick={this.returnToSignIn}>返回登录</a>
                     </div>
                 </form>
             </div>
