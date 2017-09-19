@@ -3,6 +3,7 @@ import './UserDialog.css'
 import { signUp, signIn, resetPasswordEmail } from '../../ServiceAPI/LeanCloud.js'
 import SignUpForm from './SignUpForm.js'
 import SignInForm from './SignInForm.js'
+import FrgotPassword from './ForgotPasswordForm.js'
 
 export default class UserDialog extends Component {
     constructor(props) {
@@ -120,24 +121,18 @@ export default class UserDialog extends Component {
                 </div>
             </div>
         )
-        let forgotPassword = (
-            <div className="forgetPassword">
-                <h3>重置密码</h3>
-                <form className="forgorPassword" onSubmit={this.restPassword} onSubmit={this.resetPasswordEmail}>
-                    <label>邮箱</label>
-                    <input type="email" value={this.state.formData.email} 
-                        onChange={(e) => this.changeFormData('email', e)}/>
-                    <div className="row actions">
-                        <button type="submit">发送重置邮件</button>
-                        <a href="#" onClick={this.returnToSignIn}>返回登录</a>
-                    </div>
-                </form>
-            </div>
-        )
+    
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
-                    {this.state.selectedTab === 'signInOrSignUp' ? signInOrSignUp : forgotPassword }
+                    {this.state.selectedTab === 'signInOrSignUp' ? signInOrSignUp : 
+                    <FrgotPassword
+                    onResetPasswordEmail={this.resetPasswordEmail.bind(this)}
+                    formData={this.state.formData}
+                    onChange={this.changeFormData.bind(this)}
+                    onReturnToSignIn={this.returnToSignIn.bind(this)}
+                    />
+                    }
                 </div>
 
             </div>
