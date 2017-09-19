@@ -36,12 +36,12 @@ export default class SignInOrSignUp extends Component {
                 <div className="panes">
                     {this.state.selected === 'signUp' ? <SignUpForm 
                     formData={this.props.formData}
-                    onSubmit={this.props.signUp}
+                    onSubmit={this.props.onSignUp}
                     onChange={this.props.onChange}
                     /> : null}
                     {this.state.selected === 'signIn' ? <SignInForm 
                     formData={this.props.formData}
-                    onSubmit={this.props.signIn}
+                    onSubmit={this.props.onSignIn}
                     onChange={this.props.onChange}
                     onForgotPassword={this.props.onForgotPassword}
                     /> : null}
