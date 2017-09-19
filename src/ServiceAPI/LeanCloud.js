@@ -31,10 +31,11 @@ export const TodoModel = {
     todo.save().then(function (response) {
       successFn.call(null, response.id)
     }, function (error) {
-      errorFn & errorFn.call(null, error)
+      errorFn && errorFn.call(null, error)
     });
   },
   update({ id, title, status, deleted }, successFn, errorFn) {
+    console.log(id, title, status, deleted)
     let todo = AV.Object.createWithoutData('Todo', id)
     // expr1 && expr2
     // 如果expr1 能转换成false则返回expr1,否则返回expr2. 

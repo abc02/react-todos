@@ -35,7 +35,7 @@ class App extends Component {
     //新建todo信息对象
     let newTodo = {
       title: e.target.value,
-      status: null,
+      status: '',
       deleted: false
     }
     //调用 createapi ，newTodo ,successFn , errorFn => setState
