@@ -25,7 +25,13 @@
     margin-left: 2em;
     cursor:  pointer;
 }
-.UserDialog signInOrSignUp .> .panes{
+.UserDialog .signInOrSignUp > .panes{
+    padding: 0 1em 1em;
+}
+.UserDialog .forgetPassword h3{
+    padding: 1em;
+}
+.UserDialog .forgetPassword form{
     padding: 0 1em 1em;
 }
 .UserDialog form > .row{
