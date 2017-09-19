@@ -8,7 +8,7 @@ AV.init({
 })
 
 export default AV
-
+// todo 相关操作
 export const TodoModel = {
   create({ status, title, deleted }, successFn, errorFn) {
     // 声明类型
@@ -19,17 +19,43 @@ export const TodoModel = {
     todo.set('title', title)
     todo.set('status', status)
     todo.set('deleted', deleted)
+
+    // 设置todo 权限
+    // 新建一个 ACL 实例
+    let acl = new AV.ACL()
+    acl.setPublicReadAccess(false)
+    acl.setWriteAccess(AV.User.current(), true)
+
+    // 将 ACL 实例赋予 Post 对象
+    todo.setACL(acl)
     todo.save().then(function (response) {
       successFn.call(null, response.id)
     }, function (error) {
       errorFn & errorFn.call(null, error)
     });
   },
-  update() {
-
+  update({id,title,status,deleted}, successFn, errorFn) {
+    let todo = AV.Object.createWithoutData('Todo', id)
   },
-  destroy() {
-
+  destroy(todoId, successFn, errorFn) {
+    let todo = AV.Object.createWithoutData('Todo', todoId)
+    todo.destroy().then(response =>{
+      successFn && successFn.call(null)
+    }, error =>{
+      errorFn && errorFn.call(null, error)
+    })
+  },
+  getByUser(user, successFn, errorFn) {
+    let query = new AV.Query('Todo')
+    query.find().then(response => {
+      console.log(response)
+      let array = response.map(item => {
+        return { id: item.id, ...item.attributes }
+      })
+      successFn.call(null, array)
+    }, (error) => {
+      errorFn && errorFn.call(null, error)
+    })
   }
 }
 

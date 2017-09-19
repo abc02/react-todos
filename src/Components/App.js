@@ -5,15 +5,7 @@ import UserDialog from './UserDialog/UserDialog.js'
 import { getCurrentUser, signOut, TodoModel } from '../ServiceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../reset.css'
-import './App.css';
-
-
-let id = 0
-function idMaker() {
-  id += 1
-  console.log(id)
-  return id
-}
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +15,14 @@ class App extends Component {
       newTodo: '',
       todoLists: []
     }
-
+    let user = getCurrentUser()
+    if (user) {
+      TodoModel.getByUser(user, (todos) => {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.todoLists = todos
+        this.setState(stateCopy)
+      })
+    }
   }
   changeTitle(e) {
     console.log('changTitle')
@@ -47,7 +46,7 @@ class App extends Component {
         newTodo: '',
         todoLists: this.state.todoLists
       })
-    }, (error) =>{
+    }, (error) => {
       console.dir(error)
     })
   }
@@ -56,9 +55,10 @@ class App extends Component {
     this.setState(this.state)
   }
   delete(e, todo) {
-    todo.deleted = true
-    this.setState(this.state)
-    console.log(this.state)
+    TodoModel.destroy(todo.id, () => {
+      todo.deleted = true
+      this.setState(this.state)
+    })
   }
   onSignUpOrSignIn(user) {
     console.log('onSignUp', user)
@@ -68,7 +68,7 @@ class App extends Component {
   }
   signOut() {
     signOut()
-    console.log('singOut', this)
+    console.log('singOut')
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
     this.setState(stateCopy)
