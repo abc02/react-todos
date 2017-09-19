@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TodoInput from './Todo/TodoInput.js'
 import TodoItem from './Todo/TodoItem.js'
-import UserDialog from '../Components/UserDialog/UserDialog.js'
+import UserDialog from './UserDialog/UserDialog.js'
 import { getCurrentUser , signOut, saveData} from '../ServiceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../reset.css'

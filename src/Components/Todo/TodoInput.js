@@ -7,8 +7,9 @@ function changeTitle(props, e) {
 }
 function submit(props, e) {
     if (e.key === 'Enter') {
-        console.log(e.key)
-        props.onSubmit(e)
+        if (e.target.value.trim() !== '') {
+            props.onSubmit(e)
+        }
     }
 }
 export default function (props) {
