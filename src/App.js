@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TodoInput from './TodoInput.js'
 import TodoItem from './TodoItem.js'
-import UserDialog from './UserDialog.js'
-import { getCurrentUser , signOut, saveData} from './leancloud.js'
+import UserDialog from './Components/UserDialog/UserDialog.js'
+import { getCurrentUser , signOut, saveData} from './ServiceAPI/LeanCloud.js'
 import 'normalize.css'
 import './reset.css'
 import './App.css';
