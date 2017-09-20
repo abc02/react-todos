@@ -6,16 +6,36 @@
     right: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     background: #fcd8d4;
     background: linear-gradient(#f5e0e0, #fcd8d4);
     .UserDialog {
+        display: flex;
+        // justify-content: flex-end;
+        // flex-direction: column;
+        flex: 1;
+        min-width: 48rem;
+        min-height: 36rem;
         border: 1px solid;
         border-radius: 4px;
-        min-width: 20em;
         background: white;
         border: 1px solid #aaa;
         box-shadow: 0 0 1em hsla(0, 0%, 0%, .35);
+        margin: 8rem 16rem;
+        .userBar{
+            flex: 2;
+        }
+        .signForm-Wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            .signInfo {
+                padding: 2rem;
+            }
+            .signInOrSignUp{
+                padding: 2rem;
+            }
+        }
     }
 }
-

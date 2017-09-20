@@ -29,7 +29,7 @@ export default class UserDialog extends Component {
                 break
         }
     }
- 
+
     signUp(e) {
         console.log('signUp')
         e.preventDefault()
@@ -80,20 +80,33 @@ export default class UserDialog extends Component {
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
-                    {this.state.selectedTab === 'signInOrSignUp' ?
-                        <SignInOrSignUp
-                            formData={this.state.formData}
-                            onSignUp={this.signUp.bind(this)}
-                            onSignIn={this.signIn.bind(this)}
-                            onChange={this.changeFormData.bind(this)}
-                            onForgotPassword={this.forgotPassword.bind(this)} /> :
-                        <FrgotPassword
-                            onResetPasswordEmail={this.resetPasswordEmail.bind(this)}
-                            formData={this.state.formData}
-                            onChange={this.changeFormData.bind(this)}
-                            onReturnToSignIn={this.returnToSignIn.bind(this)}
-                        />
-                    }
+                    <div className="userBar">
+                    </div>
+                    <div className="signForm-Wrapper">
+                        <div className="signInfo">
+                            <h3>Todo List</h3>
+                            <p>xxxxxxxxxxxxx</p>
+                            <p>My first upload! 
+                                We will see if I ever 
+                                do all 100 of these 
+                                exercises, but it 
+                                was really fun!</p>
+                        </div>
+                        {this.state.selectedTab === 'signInOrSignUp' ?
+                            <SignInOrSignUp
+                                formData={this.state.formData}
+                                onSignUp={this.signUp.bind(this)}
+                                onSignIn={this.signIn.bind(this)}
+                                onChange={this.changeFormData.bind(this)}
+                                onForgotPassword={this.forgotPassword.bind(this)} /> :
+                            <FrgotPassword
+                                onResetPasswordEmail={this.resetPasswordEmail.bind(this)}
+                                formData={this.state.formData}
+                                onChange={this.changeFormData.bind(this)}
+                                onReturnToSignIn={this.returnToSignIn.bind(this)}
+                            />
+                        }
+                    </div>
                 </div>
 
             </div>

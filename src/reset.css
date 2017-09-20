@@ -15,3 +15,7 @@ ul,ol,li{
 a{
     color:inherit;
 }
+button{
+    border: 0;
+    background: rgba(0, 0, 0, 0)
+}
