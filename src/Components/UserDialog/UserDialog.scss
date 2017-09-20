@@ -19,32 +19,32 @@
     }
 }
 
-// .UserDialog .signInOrSignUp > nav:first-child{
-//     padding: 1em;
-//     margin-left: -2em;
-// }
-// .UserDialog .signInOrSignUp > nav:first-child label{
-//     margin-left: 2em;
-//     cursor:  pointer;
-// }
-// .UserDialog .signInOrSignUp > .panes{
-//     padding: 0 1em 1em;
-// }
-// .UserDialog .forgetPassword h3{
-//     padding: 1em;
-// }
-// .UserDialog .forgetPassword form{
-//     padding: 0 1em 1em;
-// }
-// .UserDialog form > .row{
-//     display: flex;
-//     padding: .3em 0;
-// }
-// .UserDialog form >.row>label:first-child{
-//     width: 4em;
-// }
-// .UserDialog form > .row.actions{
-//     padding-left: 4em;
-//     display: flex;
-//     align-items: center;
-// }
+.UserDialog .signInOrSignUp > nav:first-child{
+    padding: 1em;
+    margin-left: -2em;
+}
+.UserDialog .signInOrSignUp > nav:first-child label{
+    margin-left: 2em;
+    cursor:  pointer;
+}
+.UserDialog .signInOrSignUp > .panes{
+    padding: 0 1em 1em;
+}
+.UserDialog .forgetPassword h3{
+    padding: 1em;
+}
+.UserDialog .forgetPassword form{
+    padding: 0 1em 1em;
+}
+.UserDialog form > .row{
+    display: flex;
+    padding: .3em 0;
+}
+.UserDialog form >.row>label:first-child{
+    width: 4em;
+}
+.UserDialog form > .row.actions{
+    padding-left: 4em;
+    display: flex;
+    align-items: center;
+}

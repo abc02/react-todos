@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import SignUpForm from './SignUpForm.js'
-import SignInForm from './SignInForm.js'
+import SignUpForm from './signForm/SignUpForm.js'
+import SignInForm from './signForm/SignInForm.js'
 
 export default class SignInOrSignUp extends Component {
     constructor(props){

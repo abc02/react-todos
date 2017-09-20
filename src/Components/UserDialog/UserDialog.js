@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import './UserDialog.scss'
-import { signUp, signIn, resetPasswordEmail } from '../../ServiceAPI/LeanCloud.js'
+import './UserDialog.css'
+import { signUp, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
 import FrgotPassword from './ForgotPasswordForm.js'
 import SignInOrSignUp from './SignInOrSignUp.js'
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import TodoInput from './Todo/TodoInput.js'
-import TodoItem from './Todo/TodoItem.js'
-import UserDialog from './UserDialog/UserDialog.js'
-import { getCurrentUser, signOut, TodoModel } from '../ServiceAPI/LeanCloud.js'
+import TodoInput from 'components/todo/TodoInput.js'
+import TodoItem from 'components/todo/TodoItem.js'
+import UserDialog from 'components/userDialog/UserDialog.js'
+import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'normalize.css'
-import '../reset.css'
+import 'reset.css'
 import './App.css'
 
 class App extends Component {
