@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './ForgotPasswordForm.css'
 export default class ForgotPassword extends Component {
     render() {
         return (
@@ -10,7 +11,7 @@ export default class ForgotPassword extends Component {
                         onChange={this.props.onChange.bind(null,'email')} />
                     <div className="row actions">
                         <button type="submit">发送重置邮件</button>
-                        <a href="" onClick={this.props.onReturnToSignIn}>返回登录</a>
+                        <a href="#" onClick={this.props.onReturnToSignIn}>返回登录</a>
                     </div>
                 </form>
             </div>

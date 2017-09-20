@@ -1,5 +1,5 @@
 import React  from 'react'
-import './SignInForm.css'
+
 
 export default function (props) {
     return (
@@ -17,7 +17,7 @@ export default function (props) {
             </div>
             <div className="row actions">
                 <button type="submit">登录</button>
-                <a href="" onClick={props.onForgotPassword}>忘记密码？</a>
+                <a href="#" onClick={props.onForgotPassword}>忘记密码？</a>
             </div>
         </form>
     )

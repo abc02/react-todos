@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import SignUpForm from './signForm/SignUpForm.js'
-import SignInForm from './signForm/SignInForm.js'
-
+import SignUpForm from './SignUpForm.js'
+import SignInForm from './SignInForm.js'
+import './SignInOrSignUp.css'
+import './SignForm.css'
 export default class SignInOrSignUp extends Component {
     constructor(props){
         super(props)
@@ -24,14 +25,14 @@ export default class SignInOrSignUp extends Component {
                             checked={this.state.selected === 'signUp'}
                             onChange={this.switch.bind(this)}
                         /> 注册
-            </label>
+                    </label>
                     <label>
                         <input type="radio"
                             value="signIn"
                             checked={this.state.selected === 'signIn'}
                             onChange={this.switch.bind(this)}
                         /> 登录
-            </label>
+                    </label>
                 </nav>
                 <div className="panes">
                     {this.state.selected === 'signUp' ? <SignUpForm 
