@@ -4,7 +4,7 @@ import React  from 'react'
 export default function (props) {
     return (
         // 登录
-        <form className="signIn" onSubmit={props.onSubmit}>
+        <form className="signIn signForm" onSubmit={props.onSubmit}>
             <div className="row">
                 <input type="email"
                     required 
@@ -23,7 +23,7 @@ export default function (props) {
                 <button type="submit">登&nbsp;&nbsp;录</button>
                
             </div>
-             <a href="#" onClick={props.onForgotPassword}>忘记密码？</a>
+             <a className="row forgotPassword" href="#" onClick={props.onForgotPassword}>忘记密码？</a>
         </form>
     )
 }

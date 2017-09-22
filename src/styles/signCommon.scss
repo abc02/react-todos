@@ -1,14 +1,43 @@
 @import "color.scss";
+.form {
+    flex: 1;
+    >nav {
+        padding: 1em;
+        text-align: center;
+        
+    }
+    .signForm {
+        >.row {
+            display: flex;
+            justify-content: center;
+            padding: .3em 2em;
+            input {
+                flex: 1;
+                padding: .3em;
+                padding-left: .6em;
+            }
+            &.actions {
+                button {
+                    flex: 1;
+                    background-color: $Pink;
+                    padding: .3em 0;
+                    margin-right: .3em;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                }
+                
+            }
+        }
+    }
+}
 
-
-
-
-input{
+input {
     border: 2px solid $Pink;
-    &[type=radio]{
+    &[type=radio] {
         display: none;
-    }    
-    &:required{
+    }
+    &:required {
         // border: 2px solid blue;
     }
     &:invalid {
@@ -18,7 +47,18 @@ input{
         // border: 1px solid green;
     }
 }
-label {
+
+label{
     cursor: pointer;
-   
+    padding: .5em .3em;
+    margin: 0 1em;
+    transition-property: color, border;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    &.active{
+        color: $Pink;
+        border-bottom: 2px solid $Pink;
+    }
+
 }
+

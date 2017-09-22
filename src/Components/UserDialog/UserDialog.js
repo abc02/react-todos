@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import 'styles/userDialog.css'
+
 import { signUp, signUpEmail, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
 import showError from 'serviceAPI/errorCode.js'
 import FrgotPassword from './ForgotPasswordForm.js'
@@ -16,8 +17,16 @@ export default class UserDialog extends Component {
                 username: '',
                 password: ''
             },
-            errorInfo: ''
+            errorInfo: '请注册电子邮件/密码'
         }
+    }
+    switch(selected){
+        let errorInfo = (selected === 'signUp' ? '请注册邮箱和密码' : '请输入邮箱和密码登录')
+        this.setState((preState) =>{
+           return  {
+            errorInfo: preState.errorInfo = errorInfo
+           }
+        })
     }
     signUp(e) {
         console.log('signUp')
@@ -68,6 +77,7 @@ export default class UserDialog extends Component {
         console.log('forgotPassword')
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.selectedTab = 'forgotPassword'
+        stateCopy.errorInfo = '请输入电子邮箱'
         this.setState(stateCopy)
     }
     resetPasswordEmail(e) {
@@ -88,15 +98,17 @@ export default class UserDialog extends Component {
                     <div className="signForm-Wrapper">
                         <div className="signInfo">
                             <h3>Todo Lists</h3>
-                            <Error errorInfo={this.state.errorInfo} />
+                           
                         </div>
+                        <Error errorInfo={this.state.errorInfo} />
                         {this.state.selectedTab === 'signInOrSignUp' ?
                             <SignInOrSignUp
                                 formData={this.state.formData}
                                 onSignUp={this.signUpEmail.bind(this)}
                                 onSignIn={this.signIn.bind(this)}
                                 onChange={this.changeFormData.bind(this)}
-                                onForgotPassword={this.forgotPassword.bind(this)} /> :
+                                onForgotPassword={this.forgotPassword.bind(this)} 
+                                onSwitch={this.switch.bind(this)}/> :
                             <FrgotPassword
                                 onResetPasswordEmail={this.resetPasswordEmail.bind(this)}
                                 formData={this.state.formData}

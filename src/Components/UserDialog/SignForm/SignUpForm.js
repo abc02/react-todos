@@ -3,7 +3,7 @@ import React from 'react'
 export default function (props) {
     return (
         // 注册
-        <form className="signUp" onSubmit={props.onSubmit}>
+        <form className="signUp signForm" onSubmit={props.onSubmit}>
             <div className="row">
                 <input type="email"
                     required
@@ -20,7 +20,8 @@ export default function (props) {
             </div>
 
             <div className="row actions">
-                <button type="submit">注&nbsp;&nbsp;册</button>
+                <button 
+                type="submit">注&nbsp;&nbsp;册</button>
             </div>
         </form>
     )
