@@ -70,11 +70,29 @@ export const TodoModel = {
 }
 
 
-export function signUp(email, usernmae, password, successFn, errorFn) {
+export function signUp(email, username, password, successFn, errorFn) {
   // 新建 AVUser 对象实例
   var user = new AV.User()
   //设置用户名
-  user.setUsername(usernmae)
+  user.setUsername(username)
+  // 设置密码
+  user.setPassword(password)
+  // 设置邮箱
+  user.setEmail(email)
+
+  user.signUp().then(function (loginedUser) {
+    let user = getUserFromAVUser(loginedUser)
+    successFn.call(null, user)
+  }, function (error) {
+    errorFn.call(null, error)
+  })
+  return undefined
+}
+export function signUpEmail(email, password, successFn, errorFn) {
+  // 新建 AVUser 对象实例
+  var user = new AV.User()
+  //设置用户名
+  user.setUsername(email)
   // 设置密码
   user.setPassword(password)
   // 设置邮箱

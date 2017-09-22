@@ -84,13 +84,7 @@ export default class UserDialog extends Component {
                     </div>
                     <div className="signForm-Wrapper">
                         <div className="signInfo">
-                            <h3>Todo List</h3>
-                            <p>xxxxxxxxxxxxx</p>
-                            <p>My first upload! 
-                                We will see if I ever 
-                                do all 100 of these 
-                                exercises, but it 
-                                was really fun!</p>
+                            <h3>Todo Lists</h3>
                         </div>
                         {this.state.selectedTab === 'signInOrSignUp' ?
                             <SignInOrSignUp

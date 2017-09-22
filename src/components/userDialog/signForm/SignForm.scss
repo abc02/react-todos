@@ -2,14 +2,29 @@ form.signIn,
 form.signUp {
     >.row {
         display: flex;
-        padding: .3em 0;
+        padding: .3em 2em;
+        input {
+            flex: 1;
+            padding: .3em;
+            padding-left: .6em;
+            &:required{
+                // border: 2px solid blue;
+            }
+            &:invalid {
+                // border: 1px solid red;
+            }
+            &:valid {
+                border: 1px solid green;
+            }
+        }
         &.actions {
-            padding-left: 4em;
-            display: flex;
-            align-items: center;
-        }
-        >label:first-child {
-            width: 4em;
-        }
+            button {
+                flex: 1;
+                background-color: #f5e0e0;
+                padding: .3em 0;
+            }
+        } // >label:first-child {
+        //     width: 4em;
+        // }
     }
 }

@@ -33,6 +33,7 @@ export default class SignInOrSignUp extends Component {
                             onChange={this.switch.bind(this)}
                         /> 登录
                     </label>
+                    
                 </nav>
                 <div className="panes">
                     {this.state.selected === 'signUp' ? <SignUpForm 
