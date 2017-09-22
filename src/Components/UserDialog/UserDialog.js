@@ -50,7 +50,8 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-            showError(error)
+            let errorInfo = showError(error)
+            this.setState({errorInfo})
         }
         signUpEmail(email, password, success, error)
     }
