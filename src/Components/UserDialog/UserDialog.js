@@ -4,6 +4,7 @@ import { signUp, signUpEmail, signIn, resetPasswordEmail } from 'serviceAPI/Lean
 import showError from 'serviceAPI/errorCode.js'
 import FrgotPassword from './ForgotPasswordForm.js'
 import SignInOrSignUp from './signForm/SignInOrSignUp.js'
+import Error from 'components/error/error.js'
 
 export default class UserDialog extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ export default class UserDialog extends Component {
                 email: '',
                 username: '',
                 password: ''
-            }
+            },
+            errorInfo: ''
         }
     }
     signUp(e) {
@@ -26,7 +28,8 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-            showError(error)
+            let errorInfo = showError(error)
+            this.setState({errorInfo})
         }
         signUp(email, username, password, success, error)
     }
@@ -50,7 +53,8 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-            showError(error)
+            let errorInfo = showError(error)
+            this.setState({errorInfo})
         }
         signIn(username, password, success, error)
     }
@@ -84,6 +88,7 @@ export default class UserDialog extends Component {
                     <div className="signForm-Wrapper">
                         <div className="signInfo">
                             <h3>Todo Lists</h3>
+                            <Error errorInfo={this.state.errorInfo}/>
                         </div>
                         {this.state.selectedTab === 'signInOrSignUp' ?
                             <SignInOrSignUp
