@@ -3,13 +3,13 @@ export default function showError(error) {
     console.log(error)
     switch (error.code) {
         case 202:
-            return '用户名已被占用';
+            return '用户名已经被占用';
         case 203:
-            return '该邮箱已被占用';
+            return '电子邮箱地址已经被占用';
         case 210:
-            return '用户名或密码错误';
+            return '用户名和密码不匹配';
         case 211:
-            return '找不到该用户';
+            return '找不到用户';
         default:
             return error.error;
     }

@@ -5,7 +5,6 @@ export default function (props) {
         // 注册
         <form className="signUp" onSubmit={props.onSubmit}>
             <div className="row">
-                {/* <label>邮箱</label> */}
                 <input type="email"
                     required
                     placeholder="请输入邮箱"
@@ -13,10 +12,9 @@ export default function (props) {
                     onChange={props.onChange.bind(null, 'email')} />
             </div>
             <div className="row">
-                {/* <label>密码</label> */}
                 <input type="password"
                     required
-                    placeholder="请输密码"
+                    placeholder="请输入密码"
                     value={props.formData.password}
                     onChange={props.onChange.bind(null, 'password')} />
             </div>

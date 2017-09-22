@@ -6,15 +6,13 @@ export default function (props) {
         // 登录
         <form className="signIn" onSubmit={props.onSubmit}>
             <div className="row">
-                {/* <label>用户名</label> */}
-                <input type="text"
+                <input type="email"
                     required 
                     placeholder="请输入邮箱"
                     value={props.formData.username}
                     onChange={props.onChange.bind(null, 'username')} />
             </div>
             <div className="row">
-                {/* <label>密码</label> */}
                 <input type="password" 
                     required 
                     placeholder="请输入密码"
@@ -23,8 +21,9 @@ export default function (props) {
             </div>
             <div className="row actions">
                 <button type="submit">登&nbsp;&nbsp;录</button>
-                {/* <a href="#" onClick={props.onForgotPassword}>忘记密码？</a> */}
+               
             </div>
+             <a href="#" onClick={props.onForgotPassword}>忘记密码？</a>
         </form>
     )
 }

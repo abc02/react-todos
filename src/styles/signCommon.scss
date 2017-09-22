@@ -1,0 +1,24 @@
+@import "color.scss";
+
+
+
+
+input{
+    border: 2px solid $Pink;
+    &[type=radio]{
+        display: none;
+    }    
+    &:required{
+        // border: 2px solid blue;
+    }
+    &:invalid {
+        // border: 1px solid red;
+    }
+    &:valid {
+        // border: 1px solid green;
+    }
+}
+label {
+    cursor: pointer;
+   
+}

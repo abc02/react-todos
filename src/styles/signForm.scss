@@ -7,15 +7,6 @@ form.signUp {
             flex: 1;
             padding: .3em;
             padding-left: .6em;
-            &:required{
-                // border: 2px solid blue;
-            }
-            &:invalid {
-                // border: 1px solid red;
-            }
-            &:valid {
-                border: 1px solid green;
-            }
         }
         &.actions {
             button {

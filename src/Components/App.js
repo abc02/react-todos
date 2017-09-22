@@ -5,8 +5,8 @@ import UserDialog from 'components/userDialog/UserDialog.js'
 import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../../node_modules/fonts.css/fonts.css'
-import 'reset.css'
-import './App.css'
+import 'styles/reset.css'
+import 'styles/app.css'
 
 class App extends Component {
   constructor(props) {

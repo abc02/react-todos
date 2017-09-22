@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './UserDialog.css'
+import 'styles/userDialog.css'
 import { signUp, signUpEmail, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
 import showError from 'serviceAPI/errorCode.js'
 import FrgotPassword from './ForgotPasswordForm.js'
@@ -88,7 +88,7 @@ export default class UserDialog extends Component {
                     <div className="signForm-Wrapper">
                         <div className="signInfo">
                             <h3>Todo Lists</h3>
-                            <Error errorInfo={this.state.errorInfo}/>
+                            <Error errorInfo={this.state.errorInfo} />
                         </div>
                         {this.state.selectedTab === 'signInOrSignUp' ?
                             <SignInOrSignUp
