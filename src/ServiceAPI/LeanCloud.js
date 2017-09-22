@@ -91,7 +91,7 @@ export function signUp(email, username, password, successFn, errorFn) {
 export function signUpEmail(email, password, successFn, errorFn) {
   // 新建 AVUser 对象实例
   var user = new AV.User()
-  //设置用户名
+  //设置用户名为邮箱
   user.setUsername(email)
   // 设置密码
   user.setPassword(password)

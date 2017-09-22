@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './UserDialog.css'
-import { signUp, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
+import { signUp, signUpEmail, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
+import showError from 'serviceAPI/errorCode.js'
 import FrgotPassword from './ForgotPasswordForm.js'
 import SignInOrSignUp from './signForm/SignInOrSignUp.js'
 
@@ -16,20 +17,6 @@ export default class UserDialog extends Component {
             }
         }
     }
-    showError(error) {
-        switch (error.code) {
-            case 202:
-                alert('用户名已被占用')
-                break
-            case 210:
-                alert('用户名或密码错误')
-                break
-            default:
-                alert(error)
-                break
-        }
-    }
-
     signUp(e) {
         console.log('signUp')
         e.preventDefault()
@@ -39,9 +26,21 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-            this.showError(error)
+            showError(error)
         }
         signUp(email, username, password, success, error)
+    }
+    signUpEmail(e){
+        e.preventDefault()
+        let {email, password} = this.state.formData
+        let success = (user) => {
+            this.props.onSignUp.call(null, user)
+            console.log(user)
+        }
+        let error = (error) => {
+            showError(error)
+        }
+        signUpEmail(email, password, success, error)
     }
     signIn(e) {
         e.preventDefault()
@@ -51,7 +50,7 @@ export default class UserDialog extends Component {
             console.log(user)
         }
         let error = (error) => {
-            this.showError(error)
+            showError(error)
         }
         signIn(username, password, success, error)
     }
@@ -89,7 +88,7 @@ export default class UserDialog extends Component {
                         {this.state.selectedTab === 'signInOrSignUp' ?
                             <SignInOrSignUp
                                 formData={this.state.formData}
-                                onSignUp={this.signUp.bind(this)}
+                                onSignUp={this.signUpEmail.bind(this)}
                                 onSignIn={this.signIn.bind(this)}
                                 onChange={this.changeFormData.bind(this)}
                                 onForgotPassword={this.forgotPassword.bind(this)} /> :
