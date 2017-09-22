@@ -15,9 +15,9 @@ export default function showError(error) {
             break
         case 211:
             return '找不到该用户';
-            break;
+            break
         default:
-            alert(error)
+            return error.error;
             break
     }
 }
