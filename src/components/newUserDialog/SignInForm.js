@@ -5,10 +5,10 @@ export default function SignInForm(props) {
             <div>
                 <input type="text" id="username" name="username"
                     required placeholder=" " 
-                    pattern="(?=.*\w).{6,}|(?=.*\w+@[\w]+(?:\.\w+)*)" />
-                <label htmlFor="username">用户名 / 电子邮箱</label>
+                    pattern="(?=.*\w).{6,}" />
+                <label htmlFor="username">用户名</label>
                 <div className="requirements">
-                    你的用户名字必须至少6个字符。或是一个有效的电子邮件地址。
+                    你的用户名字必须至少6个字符。
                 </div>
             </div>
 
