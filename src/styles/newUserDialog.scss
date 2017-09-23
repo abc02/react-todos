@@ -8,10 +8,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .new-userdialog {
+    flex-direction: column;
+    >nav {
+        display: flex;
+        padding: 1.25rem;
+        >div {
+            position: relative;
+            margin: 0 1.25em;
+            padding: .5em 0;
+            >label {
+                font-weight: bold;
+                font-size: 1.25rem;
+                color: white;
+                cursor: pointer;
+                padding-bottom: .3em;
+            }
+            >input[type="radio"] {
+                display: none;
+                &:valid {
+                    &+label {
+                        color: #41d873;
+                        border-bottom: 2px solid #41d873;
+                    }
+                }
+                &:invalid {
+                    &+label {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+    >.new-userdialog {
         form.signForm {
             max-width: 28.125rem;
-            > div {
+            >div {
                 position: relative;
                 background: white;
                 border-bottom: 1px solid #ccc;
@@ -78,6 +109,7 @@
                 border: 0;
                 padding: 20px;
                 font-size: 1.2rem;
+                cursor: pointer;
             }
         }
     }
