@@ -117,7 +117,8 @@ class App extends Component {
         </ol>
         {this.state.user.id ? 
         <UserForm
-          user={this.state.user} /> :
+          user={this.state.user} 
+          onSignOut={this.signOut.bind(this)}/> :
           <NewUserDialog
             onSign={this.userSign.bind(this)}
           />
