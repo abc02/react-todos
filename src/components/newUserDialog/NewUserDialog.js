@@ -45,7 +45,7 @@ export default class NewUserDialog extends Component {
         // 账号注册 操作
         e.preventDefault()
         let { username, email, password } = this.state.formData
-        signUp(email, username, password, this.success, this.error)
+        signUp(email, username, password, this.success.bind(this), this.error)
     }
     signIn(e) {
         // 账号登录 操作
