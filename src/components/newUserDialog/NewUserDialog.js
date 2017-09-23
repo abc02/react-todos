@@ -19,15 +19,21 @@ export default class NewUserDialog extends Component {
         }
     }
     switch(e) {
-        console.log(e.target.value)
         this.setState({
             selected: e.target.value
+        })
+    }
+    backSign(){
+        console.log('backSign')
+        this.setState({
+            selected: 'signin'
         })
     }
     render() {
         return (
             <div className="new-userdialog-wrapper">
-                {this.state.selected === 'forgotpassword' ? null :
+                {this.state.selected === 'forgotpassword' ? 
+                <nav>重置密码</nav> :
                     <SignNav selected={this.state.selected}
                         onSwitch={this.switch.bind(this)} />}
                 <div className="new-userdialog">
@@ -37,7 +43,8 @@ export default class NewUserDialog extends Component {
                         <SignUpForm  /> :
                             this.state.selected === 'signin' ? <SignInForm  onSwitch={this.switch.bind(this)}/> :
                                 <ForgotPasswordForm
-                                    onSwitch={this.switch.bind(this)} />
+                                    onSwitch={this.switch.bind(this)}
+                                    onBackSign={this.backSign.bind(this)} />
                     }
 
 

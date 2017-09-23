@@ -12,8 +12,11 @@ export default function SignUpForm(props) {
             </div>
             </div>
 
-
             <input type="submit" value="发  送" />
+            <input type="button" 
+                onClick={props.onBackSign}
+                value="返  回" />
+
         </form>
     )
 }
