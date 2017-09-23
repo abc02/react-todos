@@ -129,7 +129,7 @@ export function signOut() {
   AV.User.logOut()
   return undefined
 }
-export function resetPasswordEmail(email, successFn, errorFn) {
+export function sendEmailRestPassword(email, successFn, errorFn) {
   AV.User.requestPasswordReset(email).then(function (success) {
     console.log(success)
   }, function (error) {

@@ -3,7 +3,7 @@ import SignNav from './SignNav.js'
 import SignUpForm from './SignUpForm.js'
 import SignInForm from './SignInForm.js'
 import ForgotPasswordForm from './ForgotPasswordForm.js'
-import { signUp, signUpEmail, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
+import { signUp, signIn, sendEmailRestPassword } from 'serviceAPI/LeanCloud.js'
 
 import 'styles/newUserDialog.css'
 export default class NewUserDialog extends Component {
@@ -19,45 +19,47 @@ export default class NewUserDialog extends Component {
         }
     }
     switch(e) {
+        // 切换面板 注册-> 登录 -> 忘记密码
         this.setState({
             selected: e.target.value
         })
     }
     backSign() {
-        console.log('backSign')
+        // 忘记密码 -> 返回登录
         this.setState({
             selected: 'signin'
         })
     }
 
     changFormInput(key, e) {
+        // input value 输入 -> formData[key] 绑定
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.formData[key] = e.target.value
         this.setState(stateCopy)
     }
+    sendEmailRestPassword(e) {
+        e.preventDefault()
+        sendEmailRestPassword(this.state.formData.email)
+    }
     signUp(e) {
+        // 账号注册 操作
         e.preventDefault()
         let { username, email, password } = this.state.formData
-        let success = (user) => {
-            // this.props.onSignUp.call(null, user)
-            console.log(user)
-        }
-        let error = (error) => {
-            alert(error)
-        }
-        signUp(email, username, password, success, error)
+        signUp(email, username, password, this.success, this.error)
     }
     signIn(e) {
+        // 账号登录 操作
         e.preventDefault()
-        let { username, email, password } = this.state.formData
-        let success = (user) => {
-            // this.props.onSignUp.call(null, user)
-            console.log(user)
-        }
-        let error = (error) => {
-            alert(error)
-        }
-        signIn(username, password, success, error)
+        let { username, password } = this.state.formData
+        signIn(username, password, this.success.bind(this), this.error)
+    }
+    success(user) {
+        // 账户注册 / 登录成功，回调函数
+        this.props.onSign.call(null, user)
+    }
+    error(error) {
+        // 账户 错误代码 回调函数
+        alert(error)
     }
     render() {
         return (
@@ -80,8 +82,10 @@ export default class NewUserDialog extends Component {
                                     onChangeFormInput={this.changFormInput.bind(this)}
                                     onSignIn={this.signIn.bind(this)} /> :
                                 <ForgotPasswordForm
-                                    onSwitch={this.switch.bind(this)}
-                                    onBackSign={this.backSign.bind(this)} />
+                                    onBackSign={this.backSign.bind(this)}
+                                    formData={this.state.formData}
+                                    onChangeFormInput={this.changFormInput.bind(this)}
+                                    onSendEmail={this.sendEmailRestPassword.bind(this)} />
                     }
 
 

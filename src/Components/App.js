@@ -68,7 +68,8 @@ class App extends Component {
       this.setState(this.state)
     })
   }
-  onSignUpOrSignIn(user) {
+  userSign(user) {
+    //  用户是否登录
     console.log('onSignUpOrSignIn', user)
     TodoModel.getByUser(user, (todos) => {
       let stateCopy = JSON.parse(JSON.stringify(this.state))
@@ -85,9 +86,7 @@ class App extends Component {
     stateCopy.todoLists = []
     this.setState(stateCopy)
   }
-  componentDidUpdate() {
-    console.log('componentDidUpdate', this.state)
-  }
+
   render() {
     let todos = this.state.todoLists
       .filter(item => !item.deleted)
@@ -116,13 +115,11 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
-        {/* {this.state.user.id ? null :
-           <UserDialog
-            onSignUp={this.onSignUpOrSignIn.bind(this)}
-            onSignIn={this.onSignUpOrSignIn.bind(this)} /> } */}
-            {this.state.user.id ? null :
-              <NewUserDialog />
-            }
+        {this.state.user.id ? null :
+          <NewUserDialog
+            onSign={this.userSign.bind(this)}
+          />
+        }
       </div>
     );
   }
