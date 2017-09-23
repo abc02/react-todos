@@ -1,57 +1,49 @@
 import React, { Component } from 'react'
+import SignUpForm from './SignUpForm.js'
+import SignInForm from './SignInForm.js'
 import { signUp, signUpEmail, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
 
 import 'styles/newUserDialog.css'
 export default class NewUserDialog extends Component {
-
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            selected: 'signup', // signup signin forgotpassword
+            formData: {
+                username: '',
+                email: '',
+                password: ''
+            }
+        }
+    }
+    switch(e) {
+        this.setState({
+            selected: e.target.value
+        })
+    }
     render() {
         return (
             <div className="new-userdialog-wrapper">
                 <nav>
                     <div>
                         <input type="radio" id="sign-up" name="sign-up"
-                        required ckecked />
-                        <label htmlFor="sign-up">Sign Up</label>
+                            required
+                            value="signup"
+                            checked={this.state.selected === 'signup'}
+                            onChange={this.switch.bind(this)} />
+                        <label htmlFor="sign-up">注&nbsp;&nbsp;册</label>
                     </div>
                     <div>
                         <input type="radio" id="sign-in" name="sign-in"
-                        required ckecked/>
-                        <label htmlFor="sign-up">Sign In</label>
+                            required
+                            value="signin"
+                            checked={this.state.selected === 'signin'}
+                            onChange={this.switch.bind(this)} />
+                        <label htmlFor="sign-in">登&nbsp;&nbsp;录</label>
                     </div>
                 </nav>
                 <div className="new-userdialog">
-                <form className="signForm">
-                    <div>
-                        <input type="text" id="username" name="username"
-                            required placeholder=" " 
-                            pattern="(?=.*\w).{6,}"/>
-                        <label htmlFor="username">User Name</label>
-                        <div className="requirements">
-                            你的用户名字必须至少6个字符。
-                        </div>
-                    </div>
-                    <div>
-                        <input type="email" id="email" name="email"
-                            required placeholder=" " />
-                        <label htmlFor="email">Email Address</label>
-                        <div className="requirements">
-                            必须是一个有效的电子邮件地址。
-                        </div>
-                    </div>
-
-                    <div>
-                        <input type="password" id="password" name="password"
-                            required placeholder=" "
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" />
-                        <label htmlFor="password">Passwrod</label>
-                        <div className="requirements">
-                            你的密码必须至少6个字符,以及包含至少一个大写字母,一个小写字母,一个数字。
-                        </div>
-                    </div>
-
-                    <input type="submit" value=" Sign Up" />
-                </form>
+                    {this.state.selected === 'signup' ? <SignUpForm /> : <SignInForm />}
                 </div>
             </div>
         )
