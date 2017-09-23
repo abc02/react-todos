@@ -3,6 +3,7 @@ import TodoInput from 'components/todo/TodoInput.js'
 import TodoItem from 'components/todo/TodoItem.js'
 // import UserDialog from 'components/userDialog/UserDialog.js'
 import NewUserDialog from 'components/newUserDialog/NewUserDialog.js'
+import UserForm from 'components/newUserDialog/UserForm.js'
 import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../../node_modules/fonts.css/fonts.css'
@@ -26,6 +27,7 @@ class App extends Component {
       })
     }
   }
+  
   changeTitle(e) {
     console.log('changTitle')
     this.setState({
@@ -103,9 +105,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>{this.state.user.username || '我'}的待办事项
-          {this.state.user.id ? <button onClick={() => this.signOut()}>登出</button> : null}
-        </h1>
+      
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo}
             //注册onChange属性，赋值changeTitle方法，
@@ -115,7 +115,9 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
-        {this.state.user.id ? null :
+        {this.state.user.id ? 
+        <UserForm
+          user={this.state.user} /> :
           <NewUserDialog
             onSign={this.userSign.bind(this)}
           />

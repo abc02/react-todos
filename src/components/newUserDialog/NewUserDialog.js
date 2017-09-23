@@ -58,7 +58,7 @@ export default class NewUserDialog extends Component {
         this.props.onSign.call(null, user)
     }
     error(error) {
-        // 账户 错误代码 回调函数
+        // 账户注册 / 登录失败 错误代码 回调函数
         alert(error)
     }
     render() {
