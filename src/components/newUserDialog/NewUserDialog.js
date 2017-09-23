@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SignUpForm from './SignUpForm.js'
 import SignInForm from './SignInForm.js'
+import ForgotPasswordForm from './ForgotPasswordForm.js'
 import { signUp, signUpEmail, signIn, resetPasswordEmail } from 'serviceAPI/LeanCloud.js'
 
 import 'styles/newUserDialog.css'
@@ -43,7 +44,12 @@ export default class NewUserDialog extends Component {
                     </div>
                 </nav>
                 <div className="new-userdialog">
-                    {this.state.selected === 'signup' ? <SignUpForm /> : <SignInForm />}
+
+                    {
+                        this.state.selected === 'signup' ? < SignUpForm /> : this.state.selected === 'signin' ?  <SignInForm /> :<ForgotPasswordForm />
+                    }
+
+                    
                 </div>
             </div>
         )
