@@ -72,12 +72,12 @@ export default class NewUserDialog extends Component {
                         this.state.selected === 'signup' ?
                             <SignUpForm
                                 formData={this.state.formData}
-                                onChangFormInput={this.changFormInput.bind(this)}
+                                onChangeFormInput={this.changFormInput.bind(this)}
                                 onSignUp={this.signUp.bind(this)} /> :
                             this.state.selected === 'signin' ?
                                 <SignInForm onSwitch={this.switch.bind(this)}
                                     formData={this.state.formData}
-                                    onChangFormInput={this.changFormInput.bind(this)}
+                                    onChangeFormInput={this.changFormInput.bind(this)}
                                     onSignIn={this.signIn.bind(this)} /> :
                                 <ForgotPasswordForm
                                     onSwitch={this.switch.bind(this)}

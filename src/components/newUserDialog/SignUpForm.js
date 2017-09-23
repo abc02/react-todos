@@ -7,7 +7,7 @@ export default function SignUpForm(props) {
                     required placeholder=" "
                     pattern="(?=.*\w).{6,}"
                     value={props.formData.username}
-                    onChange={props.onChangFormInput.bind(null,'username')} />
+                    onChange={props.onChangeFormInput.bind(null,'username')} />
                 <label htmlFor="username">用户名</label>
                 <div className="requirements">
                     你的用户名字必须至少6个字符。
@@ -17,7 +17,7 @@ export default function SignUpForm(props) {
                 <input type="email" id="email" name="email"
                     required placeholder=" "
                     value={props.formData.email}
-                    onChange={props.onChangFormInput.bind(null,'email')} />
+                    onChange={props.onChangeFormInput.bind(null,'email')} />
                 <label htmlFor="email">电子邮箱地址</label>
                 <div className="requirements">
                     必须是一个有效的电子邮件地址。
@@ -29,7 +29,7 @@ export default function SignUpForm(props) {
                     required placeholder=" "
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" 
                     value={props.formData.password}
-                    onChange={props.onChangFormInput.bind(null,'password')}/>
+                    onChange={props.onChangeFormInput.bind(null,'password')}/>
                 <label htmlFor="password">密码</label>
                 <div className="requirements">
                     你的密码必须至少6个字符,以及包含至少一个大写字母,一个小写字母,一个数字。
