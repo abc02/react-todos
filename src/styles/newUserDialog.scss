@@ -111,6 +111,16 @@
                 font-size: 1.2rem;
                 cursor: pointer;
             }
+            #forgotpassword{
+                display: none;
+                & + label{
+                    font-weight: bold;
+                    font-size: 1.25rem;
+                    color: white;
+                    cursor: pointer;
+                    padding-bottom: .3em;
+                }
+            }
         }
     }
 }

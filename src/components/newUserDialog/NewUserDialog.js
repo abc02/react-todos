@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SignNav from './SignNav.js'
 import SignUpForm from './SignUpForm.js'
 import SignInForm from './SignInForm.js'
 import ForgotPasswordForm from './ForgotPasswordForm.js'
@@ -18,6 +19,7 @@ export default class NewUserDialog extends Component {
         }
     }
     switch(e) {
+        console.log(e.target.value)
         this.setState({
             selected: e.target.value
         })
@@ -25,31 +27,20 @@ export default class NewUserDialog extends Component {
     render() {
         return (
             <div className="new-userdialog-wrapper">
-                <nav>
-                    <div>
-                        <input type="radio" id="sign-up" name="sign-up"
-                            required
-                            value="signup"
-                            checked={this.state.selected === 'signup'}
-                            onChange={this.switch.bind(this)} />
-                        <label htmlFor="sign-up">注&nbsp;&nbsp;册</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="sign-in" name="sign-in"
-                            required
-                            value="signin"
-                            checked={this.state.selected === 'signin'}
-                            onChange={this.switch.bind(this)} />
-                        <label htmlFor="sign-in">登&nbsp;&nbsp;录</label>
-                    </div>
-                </nav>
+                {this.state.selected === 'forgotpassword' ? null :
+                    <SignNav selected={this.state.selected}
+                        onSwitch={this.switch.bind(this)} />}
                 <div className="new-userdialog">
 
                     {
-                        this.state.selected === 'signup' ? < SignUpForm /> : this.state.selected === 'signin' ?  <SignInForm /> :<ForgotPasswordForm />
+                        this.state.selected === 'signup' ? 
+                        <SignUpForm  /> :
+                            this.state.selected === 'signin' ? <SignInForm  onSwitch={this.switch.bind(this)}/> :
+                                <ForgotPasswordForm
+                                    onSwitch={this.switch.bind(this)} />
                     }
 
-                    
+
                 </div>
             </div>
         )

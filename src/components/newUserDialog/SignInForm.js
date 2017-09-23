@@ -24,6 +24,13 @@ export default function SignInForm(props) {
             </div>
 
             <input type="submit" value="登  录" />
+            <div>
+               <input type="radio" id="forgotpassword" name="forgotpassword" 
+                value="forgotpassword" 
+                onChange={props.onSwitch}/>
+               <label htmlFor="forgotpassword">忘记密码?</label>
+            </div>
+            
         </form>
     )
 }
