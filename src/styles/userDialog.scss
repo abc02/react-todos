@@ -32,6 +32,7 @@
         .signForm-Wrapper {
             flex: 1;
             display: flex;
+            max-width: 20em;
             justify-content: space-evenly;
             flex-direction: column;
             .signInfo {

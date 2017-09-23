@@ -19,8 +19,8 @@
             &.actions {
                 button {
                     flex: 1;
-                    background-color: $Pink;
-                    padding: .3em 0;
+                    background-color: $LightPink;
+                    padding: .5em 0;
                     margin-right: .3em;
                     &:last-child{
                         margin-right: 0;
@@ -33,18 +33,18 @@
 }
 
 input {
-    border: 2px solid $Pink;
+    border: 2px solid $LightPink;
     &[type=radio] {
         display: none;
     }
     &:required {
-        // border: 2px solid blue;
+        // border: 2px solid $Pink;
     }
     &:invalid {
         // border: 1px solid red;
     }
     &:valid {
-        // border: 1px solid green;
+        border: 2px solid $Pink;
     }
 }
 
