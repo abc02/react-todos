@@ -13,20 +13,18 @@
         font-weight: bold;
         font-size: 1.8rem;
         color: white;
-        cursor: pointer;
-        padding-bottom: .3em;
         display: flex;
         padding: 1.25rem;
         >div {
             position: relative;
             margin: 0 1.25em;
             padding: .5em 0;
-            >label {
-                // font-weight: bold;
-                // font-size: 1.25rem;
-                // color: white;
-                // cursor: pointer;
-                // padding-bottom: .3em;
+            >label{
+                cursor: pointer;
+                transition:.28s;
+                &:hover{
+                    color:#41d873;
+                }
             }
             >input[type="radio"] {
                 display: none;
@@ -34,6 +32,7 @@
                     &+label {
                         color: #41d873;
                         border-bottom: 2px solid #41d873;
+                        padding-bottom: .3em;
                     }
                 }
                 &:invalid {
@@ -117,7 +116,7 @@
                 background-color: #41d873;
                 color: white;
                 border: 0;
-                padding: 20px;
+                padding: 1.25rem;
                 font-size: 1.2rem;
                 cursor: pointer;
               
@@ -129,7 +128,6 @@
                     font-size: 1.25rem;
                     color: white;
                     cursor: pointer;
-                    padding-bottom: .3em;
                 }
             }
         }
