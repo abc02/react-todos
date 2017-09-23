@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import TodoInput from 'components/todo/TodoInput.js'
 import TodoItem from 'components/todo/TodoItem.js'
 import UserDialog from 'components/userDialog/UserDialog.js'
+import NewUserDialog from 'components/newUserDialog/NewUserDialog.js'
 import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../../node_modules/fonts.css/fonts.css'
 import 'styles/reset.css'
-import 'styles/app.css'
+// import 'styles/app.css'
 
 class App extends Component {
   constructor(props) {
@@ -115,10 +116,13 @@ class App extends Component {
         <ol className="todoList">
           {todos}
         </ol>
-        {this.state.user.id ? null :
-          <UserDialog
+        {/* {this.state.user.id ? null :
+           <UserDialog
             onSignUp={this.onSignUpOrSignIn.bind(this)}
-            onSignIn={this.onSignUpOrSignIn.bind(this)} />}
+            onSignIn={this.onSignUpOrSignIn.bind(this)} /> } */}
+            {this.state.user.id ? null :
+              <NewUserDialog />
+            }
       </div>
     );
   }
