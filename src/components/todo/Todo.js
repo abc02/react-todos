@@ -4,6 +4,7 @@ import TodoLists from './TodoLists'
 import TodoItem from './TodoItem.js'
 import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'styles/todo.css'
+import 'styles/iconfont.js'
 
 
 export default class Todo extends Component {

@@ -1,3 +1,11 @@
+.icon {
+    width:1.85em;
+    height: 1.85em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 .todo-wrapper {
     background: #d3d2d2;
     width: 100vw;
@@ -96,21 +104,51 @@
                         &+label {
                             opacity: 0;
                         }
+                        &~.requirements {
+                            max-height: 200px;
+                            padding: 0 1.875rem 1.25rem;
+                        }
                     }
                 }
-                >input[type="checkbox"] {
-                    display: none;
-                    &+label {
-                        position: absolute;
-                        cursor: pointer;
-                        left: 1.25em;
-                        color:red;
+                .requirements {
+                    padding: 0 1.875rem;
+                    color: #999;
+                    max-height: 0;
+                    transition: .28s;
+                    overflow: hidden;
+                    font-style: italic;
+                    display: flex;
+                    justify-content: center;
+                    >.requirements{
+                        padding: 0;
+                        padding-right: 1em;
                     }
-                    &:checked + label{
-                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
-                        background-size: 20px;
-                        background-repeat: no-repeat;
-                        // background-position: 20px 20px;
+                    >label {
+                        cursor: pointer;
+                        &:hover{
+                            &+.requirements {
+                                max-height: 1.875rem;
+                                padding-top:.4em;
+                            }
+                        }
+                    }
+                    >input[type="checkbox"] {
+                        display: none;
+                        &.todo-item-deleted {
+                           & ~ label {
+                                color: #ff5353 !important;
+                            }
+                        }
+                        &:valid {
+                            &+label{
+                                color:#41d873;
+                            }
+                        }
+                        &:invalid{
+                            & + label{
+                                color: inhert;
+                            }
+                        }
                     }
                 }
             }
