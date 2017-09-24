@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Error from 'components/error/Error.js'
+import ErrorInfo from 'components/info/ErrorInfo.js'
 import errorCode from 'serviceAPI/errorCode.js'
 import SignNav from './SignNav.js'
 import SignUpForm from './SignUpForm.js'
@@ -73,7 +73,7 @@ export default class NewUserDialog extends Component {
         return (
             <div className="new-userdialog-wrapper">
                 {
-                    this.state.errorInfo ? <Error errorInfo={this.state.errorInfo} /> : null
+                    this.state.errorInfo ? <ErrorInfo errorInfo={this.state.errorInfo} /> : null
                 }
                 {this.state.selected === 'forgotpassword' ?
                     <nav>重置密码</nav> :

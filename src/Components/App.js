@@ -5,7 +5,7 @@ import Todo from 'components/todo/Todo.js'
 // import TodoLists from 'components/todo/TodoLists.js'
 // import UserDialog from 'components/userDialog/UserDialog.js'
 import NewUserDialog from 'components/newUserDialog/NewUserDialog.js'
-import UserForm from 'components/newUserDialog/UserForm.js'
+import UserInfo from 'components/info/UserInfo.js'
 import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../../node_modules/fonts.css/fonts.css'
@@ -42,7 +42,7 @@ class App extends Component {
       <div className="App">
         <Todo />
         {this.state.user.id ? 
-        <UserForm
+        <UserInfo
           user={this.state.user} 
           onSignOut={this.signOut.bind(this)}/> :
           <NewUserDialog
