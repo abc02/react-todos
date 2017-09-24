@@ -1,0 +1,119 @@
+.todo-wrapper {
+    background: #d3d2d2;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .todo-input-wrapper {
+        max-width: 28.125rem;
+        width: 100vw;
+        >div {
+            position: relative;
+            background: white;
+            border-bottom: 1px solid #ccc;
+            >label {
+                opacity: .3;
+                font-weight: bold;
+                position: absolute;
+                top: 50%;
+                left: 20px;
+                transform: translateY(-50%);
+            }
+            >input[type="text"],
+            >input[type="checkbox"] {
+                width: 100%;
+                border: 0;
+                padding: 1.25rem 1.25rem 1.25rem 3.125rem;
+                background: #eee;
+                &:focus {
+                    outline: 0;
+                    background: white;
+                    &+label {
+                        opacity: 0;
+                    }
+                }
+                &:valid {
+                    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+                    background-size: 20px;
+                    background-repeat: no-repeat;
+                    background-position: 20px 20px;
+                    &+label {
+                        opacity: 0;
+                    }
+                }
+                &:invalid:not(:focus):not(:placeholder-shown) {
+                    background: pink;
+                    &+label {
+                        opacity: 0;
+                    }
+                }
+                &:invalid:focus:not(:placeholder-shown) {
+                    &~.requirements {
+                        max-height: 200px;
+                        padding: 0 30px 20px 50px;
+                    }
+                }
+            }
+            .requirements {
+                padding: 0 30px 0 50px;
+                color: #999;
+                max-height: 0;
+                transition: .28s;
+                overflow: hidden;
+                color: red;
+                font-style: italic;
+            }
+        }
+    }
+    .todo-lists-wrapper {
+        max-width: 28.125rem;
+        width: 100vw;
+        .todo-item-wrapper {
+            >div {
+                position: relative;
+                background: white;
+                border-bottom: 1px solid #ccc;
+                >label {
+                    opacity: .3;
+                    font-weight: bold;
+                    position: absolute;
+                    top: 1.25em;
+                    left: 3.25em;
+                }
+                >input[type="text"] {
+                    color: transparent;
+                    width: 100%;
+                    border: 0;
+                    padding: 1.25rem 1.25rem 1.25rem 3.125rem;
+                    background: #eee;
+                    &:focus {
+                        color: black;
+                        opacity: 1;
+                        outline: 0;
+                        background: white;
+                        &+label {
+                            opacity: 0;
+                        }
+                    }
+                }
+                >input[type="checkbox"] {
+                    display: none;
+                    &+label {
+                        position: absolute;
+                        cursor: pointer;
+                        left: 1.25em;
+                        color:red;
+                    }
+                    &:checked + label{
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+                        background-size: 20px;
+                        background-repeat: no-repeat;
+                        // background-position: 20px 20px;
+                    }
+                }
+            }
+        }
+    }
+}

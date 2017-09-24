@@ -6,12 +6,14 @@ export default function TodoLists(props) {
         .filter(item => !item.deleted)
         .map((item, index) => {
             return (
-                <li key={index} className="todo-item-wrapper">
-                    <TodoItem todo={item}
-                        onToggle={props.onToggle}
-                        onDelete={props.onDelete}
-                    />
-                </li>
+                <TodoItem
+                    key={index}
+                    todo={item}
+                    index={index}
+                    onToggle={props.onToggle}
+                    onDelete={props.onDelete}
+                    onChangeItem={props.onChangeItem}
+                />
             )
         })
 

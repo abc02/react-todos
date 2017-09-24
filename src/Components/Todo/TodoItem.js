@@ -3,7 +3,7 @@ import React from 'react'
 // class TodoItem extends Component {
 //     render() {
 
-        
+
 //     }
 //     toggle(e) {
 //         this.props.onToggle(e, this.props.todo)
@@ -12,27 +12,22 @@ import React from 'react'
 //         this.props.onDelete(e, this.props.todo)
 //     }
 // }
-export default function TodoItem(props){
+export default function TodoItem(props) {
     return (
-        <div>
-            <input type="checkbox" id="todo-item" name="todo-item"
-                //required 
-                //placeholder=" "
-                checked={props.todo.status === 'completed'}
-                onChange={props.onToggle.bind(null, props.todo)} />
-            <label htmlFor="todo-item">{props.todo.title}</label>
-            <button onClick={props.onDelete.bind(null, props.todo)}>删除</button>
-            <div className="requirements">
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                </div>
-        </div>
-        // <div className="TodoItem" >
-        //     <input type="checkbox"
-        //         checked={this.props.todo.status === 'completed'}
-        //         onChange={this.toggle.bind(this)}
-        //     />
-        //     <span className={`title ${this.props.todo.status}`}> </span>
-        //     <button onClick={this.delete.bind(this)}>删除</button>
-        // </div>
+        <li className="todo-item-wrapper">
+            <div>
+                <input type="checkbox" id={`item-checked-${props.index}`} className="todo-item-checked" name={`item-checked-${props.index}`}/>
+                <label htmlFor={`item-checked-${props.index}`}>C</label>
+                <input type="text" id={`item-input-${props.index}`} className="todo-item-input" name={`item-input-${props.index}`}
+                    //placeholder=" "
+                    value={props.todo.title}
+                    checked={props.todo.status === 'completed'}
+                    onClick={props.onToggle.bind(null, props.todo)}
+                    onChange={props.onChangeItem.bind(null, props.todo)} />
+                <label htmlFor={`item-input-${props.index}`}>{props.todo.title}</label>
+
+            </div>
+        </li>
+
     )
 }

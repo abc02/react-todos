@@ -3,6 +3,7 @@ import TodoInput from './TodoInput'
 import TodoLists from './TodoLists'
 import TodoItem from './TodoItem.js'
 import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
+import 'styles/todo.css'
 
 
 export default class Todo extends Component {
@@ -50,10 +51,11 @@ export default class Todo extends Component {
             console.dir(error)
         })
     }
-    toggle(e, todo) {
-        console.log(e,todo)
-        // let oldStatus = todo.status
-        // todo.status = todo.status === 'completed' ? '' : 'completed'
+    toggle(todo,e) {
+        console.log(todo)
+        let oldStatus = todo.status
+        todo.status = todo.status === 'completed' ? '' : 'completed'
+        this.setState(this.state)
         // TodoModel.update(todo, () => {
         //     this.setState(this.state)
         // }, error => {
@@ -67,6 +69,21 @@ export default class Todo extends Component {
             this.setState(this.state)
         })
     }
+    changeItem(todo, e) {
+        console.log('changeItem', todo,e.target.checked)
+        let oldTitle = todo.title
+        todo.title = e.target.value
+        this.setState(this.state)
+        // TodoModel.update(todo, () => {
+        //     console.log('changeItem', 'update')
+        //     let stateCopy = JSON.parse(JSON.stringify(this.state))
+        //     stateCopy.todoLists[index] = todo
+        //     this.setState(stateCopy)
+        // }, error => {
+        //     todo.title = oldTitle
+        //     this.setState(this.state)
+        // })
+    }
     render() {
         return (
             <div className="todo-wrapper">
@@ -78,7 +95,8 @@ export default class Todo extends Component {
                 <TodoLists
                     todoLists={this.state.todoLists}
                     onToggle={this.toggle.bind(this)}
-                    onDelete={this.delete.bind(this)} />
+                    onDelete={this.delete.bind(this)}
+                    onChangeItem={this.changeItem.bind(this)} />
 
             </div>
         )
