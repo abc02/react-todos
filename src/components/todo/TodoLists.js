@@ -12,6 +12,7 @@ export default function TodoLists(props) {
                     index={index}
                     onToggle={props.onToggle}
                     onDelete={props.onDelete}
+                    onUpdateItem={props.onUpdateItem}
                     onChangeItem={props.onChangeItem}
                 />
             )

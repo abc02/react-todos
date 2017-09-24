@@ -34,6 +34,7 @@ export default class Todo extends Component {
         })
     }
     addTodo(e) {
+        console.log('addTodo', e.key)
         //新建todo信息对象
         let newTodo = {
             title: e.target.value,
@@ -53,37 +54,39 @@ export default class Todo extends Component {
         })
     }
     toggle(todo,e) {
-        console.log(todo)
+        console.log('toggle',todo.status)
         let oldStatus = todo.status
         todo.status = todo.status === 'completed' ? '' : 'completed'
-        this.setState(this.state)
-        // TodoModel.update(todo, () => {
-        //     this.setState(this.state)
-        // }, error => {
-        //     todo.state = oldStatus
-        //     this.setState(this.state)
-        // })
+        TodoModel.update(todo, () => {
+            this.setState(this.state)
+        }, error => {
+            todo.state = oldStatus
+            this.setState(this.state)
+        })
     }
-    delete(e, todo) {
+    delete(todo,e) {
+        console.log('delete',todo.deleted)
         TodoModel.destroy(todo.id, () => {
             todo.deleted = true
             this.setState(this.state)
         })
     }
+    updateItem(todo,e){
+        console.log('updateItem', )
+        let oldTitle = todo.title
+          TodoModel.update(todo, () => {
+            this.setState(this.state)
+        }, error => {
+            todo.title = oldTitle
+            this.setState(this.state)
+        })
+    }
     changeItem(todo, e) {
-        console.log('changeItem', todo,e.target.checked)
+        console.log('changeItem', e.target.value,e.key)
         let oldTitle = todo.title
         todo.title = e.target.value
         this.setState(this.state)
-        // TodoModel.update(todo, () => {
-        //     console.log('changeItem', 'update')
-        //     let stateCopy = JSON.parse(JSON.stringify(this.state))
-        //     stateCopy.todoLists[index] = todo
-        //     this.setState(stateCopy)
-        // }, error => {
-        //     todo.title = oldTitle
-        //     this.setState(this.state)
-        // })
+      
     }
     render() {
         return (
@@ -97,6 +100,7 @@ export default class Todo extends Component {
                     todoLists={this.state.todoLists}
                     onToggle={this.toggle.bind(this)}
                     onDelete={this.delete.bind(this)}
+                    onUpdateItem={this.updateItem.bind(this)}
                     onChangeItem={this.changeItem.bind(this)} />
 
             </div>

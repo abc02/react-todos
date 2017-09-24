@@ -26,7 +26,6 @@ class App extends Component {
     TodoModel.getByUser(user, (todos) => {
       let stateCopy = JSON.parse(JSON.stringify(this.state))
       stateCopy.user = user
-      stateCopy.todoLists = todos
       this.setState(stateCopy)
     })
   }
@@ -35,7 +34,6 @@ class App extends Component {
     console.log('singOut')
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
-    stateCopy.todoLists = []
     this.setState(stateCopy)
   }
 

@@ -20,22 +20,23 @@ export default function TodoItem(props) {
                 <input type="text" id={`item-input-${props.index}`} className="todo-item-input" name={`item-input-${props.index}`}
                     //placeholder=" "
                     value={props.todo.title}
-                    checked={props.todo.status === 'completed'}
-                    onClick={props.onToggle.bind(null, props.todo)}
                     onChange={props.onChangeItem.bind(null, props.todo)} />
                 <label htmlFor={`item-input-${props.index}`}>{props.todo.title}</label>
                 <div className="requirements">
-                    <input type="checkbox" id={`item-checked-${props.index}`} className="todo-item-checked" name={`item-checked-${props.index}`} 
-                        required />
+                    <input type="checkbox" id={`item-checked-${props.index}`} className="todo-item-checked" name={`item-checked-${props.index}`}
+                        required
+                        checked={props.todo.status === 'completed'}
+                        onChange={props.onToggle.bind(null, props.todo)} />
                     <label htmlFor={`item-checked-${props.index}`}>
                         <svg className="icon" aria-hidden="true">
                             <use xlinkHref="#icon-checked"></use>
                         </svg>
                     </label>
                     <div className="requirements">
-                            完成
+                        完成
                     </div>
-                    <input type="checkbox" id={`item-deleted-${props.index}`} className="todo-item-deleted" name={`item-deleted-${props.index}`} />
+                    <input type="checkbox" id={`item-deleted-${props.index}`} className="todo-item-deleted" name={`item-deleted-${props.index}`}
+                        onChange={props.onDelete.bind(null, props.todo)} />
                     <label htmlFor={`item-deleted-${props.index}`}>
                         <svg className="icon" aria-hidden="true">
                             <use xlinkHref="#icon-deleted"></use>
@@ -43,6 +44,17 @@ export default function TodoItem(props) {
                     </label>
                     <div className="requirements">
                         删除
+                    </div>
+                    <input type="checkbox" id={`item-checked-${props.index}`} className="todo-item-checked" name={`item-checked-${props.index}`}
+                        required
+                        onChange={props.onUpdateItem.bind(null, props.todo)} />
+                    <label htmlFor={`item-checked-${props.index}`}>
+                        <svg className="icon" aria-hidden="true">
+                            <use xlinkHref="#icon-checked"></use>
+                        </svg>
+                    </label>
+                    <div className="requirements">
+                        保存
                     </div>
                 </div>
             </div>

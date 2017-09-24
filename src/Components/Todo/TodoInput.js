@@ -28,15 +28,6 @@ export default function (props) {
                 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 </div>
             </div>
-            {/* <div>
-                <input type="text"
-                    required placeholder=" "
-                   />
-                <label htmlFor="">请输入待办事项2</label>
-                <div className="requirements">
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                </div>
-            </div> */}
         </div>
 
     )
