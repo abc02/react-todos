@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Error from 'components/error/Error.js'
+import errorCode from 'serviceAPI/errorCode.js'
 import SignNav from './SignNav.js'
 import SignUpForm from './SignUpForm.js'
 import SignInForm from './SignInForm.js'
@@ -15,7 +17,8 @@ export default class NewUserDialog extends Component {
                 username: '',
                 email: '',
                 password: ''
-            }
+            },
+            errorInfo:''
         }
     }
     switch(e) {
@@ -45,25 +48,33 @@ export default class NewUserDialog extends Component {
         // 账号注册 操作
         e.preventDefault()
         let { username, email, password } = this.state.formData
-        signUp(email, username, password, this.success.bind(this), this.error)
+        signUp(email, username, password, this.success.bind(this), this.error.bind(this))
     }
     signIn(e) {
         // 账号登录 操作
         e.preventDefault()
         let { username, password } = this.state.formData
-        signIn(username, password, this.success.bind(this), this.error)
+        signIn(username, password, this.success.bind(this), this.error.bind(this))
     }
     success(user) {
         // 账户注册 / 登录成功，回调函数
         this.props.onSign.call(null, user)
     }
     error(error) {
-        // 账户注册 / 登录失败 错误代码 回调函数
-        alert(error)
+        // 账户注册 / 登录失败 错误代码 回调函数\
+        let errorInfo = errorCode(error)
+        
+        console.log('error', error.error ,errorInfo)
+        this.setState({
+            errorInfo
+        })
     }
     render() {
         return (
             <div className="new-userdialog-wrapper">
+                {
+                    this.state.errorInfo ? <Error errorInfo={this.state.errorInfo} /> : null
+                }
                 {this.state.selected === 'forgotpassword' ?
                     <nav>重置密码</nav> :
                     <SignNav selected={this.state.selected}

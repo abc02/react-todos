@@ -1,5 +1,6 @@
 
 export default function showError(error) {
+    if(!error) return 
     switch (error.code) {
         case 199:
             return '用户名已经被占用';
