@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import 'styles/userInfo.css'
 export default function UserInfo(props) {
     return (

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import TodoInput from './TodoInput'
 import TodoLists from './TodoLists'
-import TodoItem from './TodoItem.js'
-import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
+import { getCurrentUser, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'styles/todo.css'
 import 'styles/iconfont.js'
 
@@ -83,7 +82,6 @@ export default class Todo extends Component {
     }
     changeItem(todo, e) {
         console.log('changeItem', e.target.value,e.key)
-        let oldTitle = todo.title
         todo.title = e.target.value
         this.setState(this.state)
       

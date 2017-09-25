@@ -18,7 +18,7 @@ export default function (props) {
             <div>
                 <input type="text" id="todo-input" name="todo-input"
                     required placeholder=" "
-                    pattern="(?=.*\w).*" 
+                    //pattern="(?=.*\w).*" 
                     value={props.content}
                     // 触发change事件，调用changeTitle方法
                     onChange={changeTitle.bind(null, props)}
