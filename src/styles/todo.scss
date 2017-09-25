@@ -7,15 +7,12 @@
 }
 
 .todo-wrapper {
-    background: #d3d2d2;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    //flex-direction: column;
     .todo-input-wrapper {
-        max-width: 28.125rem;
+        // max-width: 28.125rem;
         width: 100vw;
         >div {
             position: relative;
@@ -43,10 +40,10 @@
                     }
                 }
                 &:valid {
-                    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
-                    background-size: 20px;
-                    background-repeat: no-repeat;
-                    background-position: 20px 20px;
+                    // background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+                    // background-size: 20px;
+                    // background-repeat: no-repeat;
+                    // background-position: 20px 20px;
                     &+label {
                         opacity: 0;
                     }
@@ -76,13 +73,13 @@
         }
     }
     .todo-lists-wrapper {
-        max-width: 28.125rem;
+        // max-width: 28.125rem;
         width: 100vw;
         .todo-item-wrapper {
             >div {
                 position: relative;
                 background: white;
-                border-bottom: 1px solid #ccc;
+               
                 >label {
                     opacity: .3;
                     font-weight: bold;
@@ -94,6 +91,7 @@
                     color: transparent;
                     width: 100%;
                     border: 0;
+                    border-bottom: 1px solid #ccc;
                     padding: 1.25rem 1.25rem 1.25rem 3.125rem;
                     background: #eee;
                     &:focus {
@@ -106,8 +104,12 @@
                         }
                         &~.requirements {
                             max-height: 200px;
-                            padding: 0 1.875rem 1.25rem;
+                            padding: 1.25rem 1.875rem 1.25rem;
                         }
+                    }
+                    &.completed{
+                        background:#41d873;
+                        border-bottom: 1px solid #41d873;
                     }
                 }
                 .requirements {
@@ -139,6 +141,11 @@
                                 color: #ff5353 !important;
                             }
                         }
+                        &.todo-item-saved {
+                            & ~ label {
+                                 color: #53acfb !important;
+                             }
+                         }
                         &:valid {
                             &+label{
                                 color:#41d873;

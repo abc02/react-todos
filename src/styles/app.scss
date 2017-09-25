@@ -1,0 +1,15 @@
+.App {
+    >div {
+        // width: 100vw;
+        // height: 100vh;
+        min-width: 100vw;
+        min-height: 100vh;
+        //display: flex;
+        .user-info-wrapper {
+            background: #f9fafb
+        }
+        .todo-wrapper {
+            flex: 1;
+        }
+    }
+}

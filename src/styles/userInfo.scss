@@ -1,11 +1,18 @@
 .user-info-wrapper{
-    position: fixed;
-    top:0;
-    left:0;
-    text-align: center;
-    width: 100vw;
-    min-height: 2em;
-    display: flex;
-    justify-content: space-between;
-    background: #f9fafb
+    >div{
+        background:#333;
+        color: white;
+        display: flex;
+        padding: 1.25em 1.25em;
+        >h3{
+            flex: 1;
+            font-weight: normal;
+        }
+        >button{
+            
+            background: #ff5353;
+            color: inherit;
+            padding: .3em .6em;
+        }
+    }
 }

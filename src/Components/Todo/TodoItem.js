@@ -17,9 +17,10 @@ export default function TodoItem(props) {
         <li className="todo-item-wrapper">
 
             <div>
-                <input type="text" id={`item-input-${props.index}`} className="todo-item-input" name={`item-input-${props.index}`}
+                <input type="text" id={`item-input-${props.index}`} name={`item-input-${props.index}`}
                     //placeholder=" "
                     value={props.todo.title}
+                    className={`todo-item-input ${props.todo.status}`}
                     onChange={props.onChangeItem.bind(null, props.todo)} />
                 <label htmlFor={`item-input-${props.index}`}>{props.todo.title}</label>
                 <div className="requirements">
@@ -45,12 +46,12 @@ export default function TodoItem(props) {
                     <div className="requirements">
                         删除
                     </div>
-                    <input type="checkbox" id={`item-checked-${props.index}`} className="todo-item-checked" name={`item-checked-${props.index}`}
+                    <input type="checkbox" id={`item-saved-${props.index}`} className="todo-item-saved" name={`item-saved-${props.index}`}
                         required
                         onChange={props.onUpdateItem.bind(null, props.todo)} />
-                    <label htmlFor={`item-checked-${props.index}`}>
+                    <label htmlFor={`item-saved-${props.index}`}>
                         <svg className="icon" aria-hidden="true">
-                            <use xlinkHref="#icon-checked"></use>
+                            <use xlinkHref="#icon-saved"></use>
                         </svg>
                     </label>
                     <div className="requirements">

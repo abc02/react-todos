@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import Todo from 'components/todo/Todo.js'
-// import TodoInput from 'components/todo/TodoInput.js'
-// import TodoItem from 'components/todo/TodoItem.js'
-// import TodoLists from 'components/todo/TodoLists.js'
-// import UserDialog from 'components/userDialog/UserDialog.js'
 import NewUserDialog from 'components/newUserDialog/NewUserDialog.js'
 import UserInfo from 'components/info/UserInfo.js'
 import { getCurrentUser, signOut, TodoModel } from 'serviceAPI/LeanCloud.js'
 import 'normalize.css'
 import '../../node_modules/fonts.css/fonts.css'
 import 'styles/reset.css'
-// import 'styles/app.css'
+import 'styles/app.css'
 
 class App extends Component {
   constructor(props) {
@@ -23,11 +19,14 @@ class App extends Component {
   userSign(user) {
     //  用户是否登录
     console.log('onSignUpOrSignIn', user)
-    TodoModel.getByUser(user, (todos) => {
-      let stateCopy = JSON.parse(JSON.stringify(this.state))
-      stateCopy.user = user
-      this.setState(stateCopy)
-    })
+    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    stateCopy.user = user
+    this.setState(stateCopy)
+    // TodoModel.getByUser(user, (todos) => {
+    //   let stateCopy = JSON.parse(JSON.stringify(this.state))
+    //   stateCopy.user = user
+    //   this.setState(stateCopy)
+    // })
   }
   signOut() {
     signOut()
@@ -40,15 +39,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Todo />
-        {this.state.user.id ? 
-        <UserInfo
-          user={this.state.user} 
-          onSignOut={this.signOut.bind(this)}/> :
-          <NewUserDialog
-            onSign={this.userSign.bind(this)}
-          />
+
+        {
+          this.state.user.id ?
+            <div>
+              <UserInfo
+                user={this.state.user}
+                onSignOut={this.signOut.bind(this)} />
+              <Todo />
+            </div>
+            :
+            <NewUserDialog
+              onSign={this.userSign.bind(this)}
+            />
+
         }
+
+
       </div>
     );
   }
